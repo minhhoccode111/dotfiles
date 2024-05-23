@@ -1,0 +1,78 @@
+# Font configuration
+[font.normal] 
+# family = "AnonymiceProNerdFont"
+family = "CodeNewRomanNerdFont"
+style = "Regular"
+
+[font.italic] 
+# family = "AnonymiceProNerdFont"
+family = "CodeNewRomanNerdFont"
+style = "Italic"
+
+[font.bold] 
+# family = "AnonymiceProNerdFont"
+family = "CodeNewRomanNerdFont"
+style = "Bold"
+
+# font size
+[font] 
+size = 11
+
+[window]
+
+    # Dynamic Spread additional padding evenly around the terminal content.
+dynamic_padding = true
+
+    # Window decorations
+    #
+    # Available values:
+    # - full: borders and title bar
+    # - none: neither borders nor title bar
+    # - transparent: title bar, transparent background and title bar buttons
+    # - buttonless: title bar, transparent background, but no title bar buttons
+# decorations = "none"
+
+    # Startup Mode (changes require restart)
+    #
+    # Values for `startup_mode`:
+    #   - Windowed
+    #   - Maximized
+    #   - Fullscreen
+    #
+    # Values for `startup_mode` (macOS only):
+    #   - SimpleFullscreen
+startup_mode = "Maximized"
+
+    # background opacity
+    # change with scroll title bar instead 
+    # because of neovim won't be transparent all at
+# opacity = 1 
+
+
+# [window.dimensions]
+    # Window dimensions (changes require restart)
+    #
+    # Specified in number of columns/lines, not pixels. If both are zero this
+    # setting is ignored.
+# columns = 100
+# lines = 85
+
+# [window.padding]
+    # Window padding (changes require restart)
+    #
+    # Blank space added around the window in pixels. This padding is not scaled by
+    # DPI and the specified value is always added at both opposing sides.
+# x = 0
+# y = 0
+
+# [scrolling]
+
+    # maximum number of lines in the scrollback buffer. Specifying '0' will
+    # disable scrolling.
+# history = 0
+
+    # Number of lines the viewport will move for every line scrolled when
+    # scrollback is enabled (history > 0).
+# multiplier = 3
+
+
