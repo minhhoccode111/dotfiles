@@ -5,33 +5,43 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# default
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
-alias c="clear"
-alias nala="sudo nala update && sudo nala upgrade -y"
-alias log="git log --all --oneline --graph"
-alias ga="git add ."
-alias gc="git commit -m "
-alias gs="git status"
-alias gp="git push"
-alias gpd="git push origin develop"
-alias folder="dolphin" # arch, ubuntu use nautilus
-alias l="ls -al --color=auto"
-alias nt="bun run test" # run test script
-alias bd="bun dev"
-alias bs="bun server"
-alias bi="bun install"
-alias nv="nvim" # never use vim
-alias vim="nvim" # never use vim
-alias off="sudo poweroff"
-alias asd="sudo poweroff"
-alias gcc="gcc -lcs50" # auto include CS50 library
-alias cd1="cd ../" # notice the '/' for continuously path
+
+# chang dir
+alias cd1="cd ../"
 alias cd2="cd ../../"
 alias cd3="cd ../../../"
 alias cd4="cd ../../../../"
 alias cd5="cd ../../../../../"
+
+# git related
+alias log="git log --all --oneline --graph"
+alias ga="git add ."
+alias gc="git commit -m "
+alias gs="git status"
+alias gp="git push origin"
+alias gpd="git push origin develop"
+
+# bun related
+alias nt="bun run test"
+alias bd="bun run dev dev"
+alias bs="bun run server"
+alias bi="bun install"
+
+# basic
+alias c="clear"
+alias l="ls -al --color=auto"
+alias off="sudo poweroff"
+alias folder="dolphin" # open current dir GUI
+# alias folder="nautilus" # open current dir GUI
+alias asd="sudo pacman -Syu ; yay -Syu ; flatpak update ; bun upgrade"
+# alias asd="sudo nala update && sudo nala upgrade -y"
+alias nv="nvim" # never use vim
+alias vim="nvim" # never use vim
+# alias gcc="gcc -lcs50" # auto include CS50 library when compile C in CS50
 
 # nvm 
 export NVM_DIR="$HOME/.nvm"
@@ -52,14 +62,12 @@ setxkbmap -option ctrl:nocaps
 # make short-pressed Ctrl behave like Escape:
 xcape -e 'Control_L=Escape'
 
+# cs50 library
+export LD_LIBRARY_PATH=/usr/local/lib
 
-# init.lua link file
-export INITLUA="$HOME/.config/nvim/init.lua"
-
+# auto complete alacritty terminal
 source ~/.bash_completion/alacritty
 
 # flex arch linux
 neofetch
 
-# include cs50 lib when executing a program
-export LD_LIBRARY_PATH=/usr/local/lib

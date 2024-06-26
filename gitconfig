@@ -7,3 +7,9 @@
 	ui = auto
 [pull]
 	rebase = false
+[core]
+	editor = nvim
+[alias]
+	co = checkout
+	br = branch
+	ci = commit

@@ -43,10 +43,10 @@ nnoremap } }zz
 nnoremap { {zz
 
 " move line instead of paragraph
-nmap j gj
-nmap k gk
-vmap j gj
-vmap k gk
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
 
 " O works like o but don't exit normal mode
 nmap O o<Esc>
