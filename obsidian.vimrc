@@ -1,4 +1,7 @@
-" #################### SETTINGS ####################
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""SETTINGS""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Go back and forward with Ctrl+O and Ctrl+I
 " (make sure to remove default Obsidian shortcuts for these to work)
 " exmap back obcommand app:go-back
@@ -9,12 +12,9 @@
 " Yank to system clipboard
 set clipboard=unnamed
 
-" Set leader key. Just use the <Space> in keymap 
-" instead of setting leader key
-
-" #################### KEYMAPS ####################
-" jj in insert mode to enter normal mode
-imap jj <Esc>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""SETTINGS""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Normal vim backspace vim behaviour, instead of find and replace
 imap <C-h> <BS>
@@ -22,25 +22,33 @@ imap <C-h> <BS>
 " act like enter
 imap <C-m> <CR>
 
-" select all
-map <C-a> <Esc>ggVG
+" Enter Normal mode from Insert mode with jj
+inoremap jj <Esc>
 
-" basics movement and jumping 
-noremap H ^
-noremap L $
-noremap K %
+" Center cursor after moving screen
+nnoremap n nzzzv
+nnoremap N Nzzzv
 
-" Center cursor after moving screen 
-nnoremap <C-d> <C-d>zz
-nnoremap <C-u> <C-u>zz
-nnoremap <C-f> <C-f>zz
-nnoremap <C-b> <C-b>zz
-nnoremap n nzz
-nnoremap N Nzz
-nnoremap ) )zz
-nnoremap ( (zz
-nnoremap } }zz
-nnoremap { {zz
+" H, K, L
+nnoremap H ^
+onoremap H ^
+vnoremap H ^
+
+nnoremap L $
+onoremap L $
+vnoremap L $
+
+nnoremap K %
+onoremap K %
+vnoremap K %
+
+" Insert new line above and stay in Normal mode
+nnoremap O o<Esc>
+
+" Select all with <C-a>
+inoremap <C-a> <Esc>ggVG
+vnoremap <C-a> <Esc>ggVG
+nnoremap <C-a> ggVG
 
 " move line instead of paragraph
 nnoremap j gj
@@ -48,10 +56,9 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
-" O works like o but don't exit normal mode
-nmap O o<Esc>
-
-" #################### KEYMAPS COMMAND ####################
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""KEYMAPS COMMAND""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Esc in Normal mode turn off high light
 nmap <Esc> :nohl<CR>
 

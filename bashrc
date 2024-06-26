@@ -33,17 +33,16 @@ alias bi="bun install"
 
 # basic
 alias c="clear"
-alias l="ls -al --color=auto"
+alias l="ls -Ghal --color=auto"
 alias off="sudo poweroff"
 alias folder="dolphin" # open current dir GUI
 # alias folder="nautilus" # open current dir GUI
 alias asd="sudo pacman -Syu ; yay -Syu ; flatpak update ; bun upgrade"
 # alias asd="sudo nala update && sudo nala upgrade -y"
-alias nv="nvim" # never use vim
-alias vim="nvim" # never use vim
+alias nv="nvim"
 # alias gcc="gcc -lcs50" # auto include CS50 library when compile C in CS50
 
-# nvm 
+# nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -64,6 +63,9 @@ xcape -e 'Control_L=Escape'
 
 # cs50 library
 export LD_LIBRARY_PATH=/usr/local/lib
+
+# editor default, use short cut `ctrl-x` `ctrl-e` will edit current bash readline in $EDITOR
+export EDITOR=nvim
 
 # auto complete alacritty terminal
 source ~/.bash_completion/alacritty
