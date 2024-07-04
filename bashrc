@@ -64,6 +64,9 @@ xcape -e 'Control_L=Escape'
 # cs50 library
 export LD_LIBRARY_PATH=/usr/local/lib
 
+# editor default, use short cut `ctrl-x` `ctrl-e` will edit current bash readline in $EDITOR
+export EDITOR=nvim
+
 # auto complete alacritty terminal
 source ~/.bash_completion/alacritty
 
