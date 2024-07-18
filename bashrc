@@ -73,3 +73,5 @@ source ~/.bash_completion/alacritty
 # flex arch linux
 neofetch
 
+# Add .NET Core SDK tools
+export PATH="$PATH:/home/mhc/.dotnet/tools"
