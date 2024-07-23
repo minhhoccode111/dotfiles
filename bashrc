@@ -71,7 +71,9 @@ export EDITOR=nvim
 source ~/.bash_completion/alacritty
 
 # flex arch linux
-neofetch
+# neofetch
 
 # Add .NET Core SDK tools
-export PATH="$PATH:/home/mhc/.dotnet/tools"
+# export PATH="$PATH:/home/mhc/.dotnet/tools" # pc
+export PATH="$HOME/.dotnet/tools:$PATH" # laptop
+export PATH="$PATH:/opt/mssql-tools/bin"
