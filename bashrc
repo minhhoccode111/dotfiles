@@ -174,14 +174,18 @@ export EDITOR=nvim
 # auto complete alacritty terminal
 source ~/.bash_completion/alacritty
 
+# things add to bash_profile are only effective after we login
+# this line make things take effect each time we open a new terminal
+source ~/.bash_profile
+
 # flex arch linux
 # neofetch
 
 # Add .NET Core SDK tools
 export PATH="$PATH:/opt/mssql-tools18/bin"
 export DOTNET_ROOT=/usr/share/dotnet
-# export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
 export PATH=$PATH:$DOTNET_ROOT
+# export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -189,10 +193,6 @@ export PATH=$BUN_INSTALL/bin:$PATH
 
 # go
 export PATH=$PATH:/usr/local/go/bin
-source ~/.bash_completion/alacritty
-
-# alacritty bash completion
-source ~/.bash_completion/alacritty
 
 # rustup
 . "$HOME/.cargo/env"
