@@ -9,19 +9,19 @@ Optional files:
 
 ## Note
 
-This repo's `main` branch is setup for Arch with below architecture
+This repo's `main` branch is setup for Ubuntu with below architecture
 
 ```bash
-OS: Arch Linux x86_64
-Host: MS-7C82 1.0
-Kernel: 6.9.6-arch1-1
-Shell: bash 5.2.26
-DE: Plasma 6.1.0
-WM: KWin
-Terminal: alacritty
-CPU: Intel i5-10400F (12) @ 4.300GHz
-GPU: NVIDIA GeForce RTX 2060 SUPER
-Memory: 0000MiB / 15931MiB
+OS: Ubuntu 22.04.4 LTS x86_64
+Host: VivoBook_ASUSLaptop X431FA_S431FA 1.0
+Kernel: 6.5.0-44-generic
+Shell: bash 5.1.16
+Resolution: 1920x1080
+DE: GNOME 42.9
+Terminal: Alacritty
+CPU: Intel i5-8265U (8) @ 3.900GHz
+GPU: Intel WhiskeyLake-U GT2 [UHD Graphics 620]
+Memory: 0000MiB / 7678MiB
 ```
 
 For other architecture and linux distro, check out another branch
@@ -41,9 +41,9 @@ git clone git@github.com:minhhoccode111/dotfiles.git ~/dotfiles/
 mkdir ~/old_dotfiles
 cd ~/old_dotfiles
 
-mv ~/.vimrc ./vimrc
 mv ~/.bashrc ./bashrc
 mv ~/.gitconfig ./gitconfig
+mv ~/.vimrc ./vimrc
 
 mv ~/.config/alacritty/alacritty.toml ./alacritty.toml
 mv ~/Documents/current-obsidian/.obsidian.vimrc ./obsidian.vimrc
@@ -76,6 +76,20 @@ Restore
 ```bash
 cat ~/dotfiles/packages/installed_pacman.lst | xargs pacman -S --needed --noconfirm
 sudo pacman -Syu
+```
+
+## Backup/restore nala installed packages (optional)
+
+Backup
+
+```bash
+sudo dpkg --get-selections | grep install > ~/dotfiles/packages/installed_nala.lst
+```
+
+Restore
+
+```bash
+sudo nala install $(cat ~/dotfiles/packages/installed_nala.lst)
 ```
 
 ## Destroy symbolic links
