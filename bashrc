@@ -156,7 +156,7 @@ alias off="sudo poweroff"
 # alias folder="dolphin" # open current dir GUI
 alias folder="nautilus" # open current dir GUI
 # alias asd="sudo pacman -Syu ; yay -Syu ; flatpak update ; bun upgrade"
-alias asd="sudo nala update && sudo nala upgrade -y"
+alias asd="sudo nala update && sudo nala upgrade -y && flatpak update && bun upgrade"
 alias nv="nvim"
 # alias gcc="gcc -lcs50" # auto include CS50 library when compile C in CS50
 
@@ -183,9 +183,6 @@ source ~/.bash_profile
 
 # Add .NET Core SDK tools
 export PATH="$PATH:/opt/mssql-tools18/bin"
-export DOTNET_ROOT=/usr/share/dotnet
-export PATH=$PATH:$DOTNET_ROOT
-# export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -201,3 +198,4 @@ export PATH=$PATH:/usr/local/go/bin
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
