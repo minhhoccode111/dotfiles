@@ -128,7 +128,7 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 
-# chang dir
+# change dir
 alias cd1="cd ../"
 alias cd2="cd ../../"
 alias cd3="cd ../../../"
@@ -140,7 +140,7 @@ alias log="git log --all --oneline --graph"
 alias ga="git add ."
 alias gc="git commit -m "
 alias gs="git status"
-alias gp="git push origin"
+alias gp="git push origin" # push default
 alias gpd="git push origin develop"
 
 # bun related
@@ -149,16 +149,29 @@ alias bd="bun run dev dev"
 alias bs="bun run server"
 alias bi="bun install"
 
+# dotnet related
+alias dw="dotnet watch"
+alias db="dotnet build"
+alias dr="dotnet run"
+alias di="dotnet restore" # dotnet install
+alias defu="dotnet ef database update"
+
 # basic
 alias c="clear"
 alias l="ls -Ghal --color=auto"
 alias off="sudo poweroff"
-# alias folder="dolphin" # open current dir GUI
-alias folder="nautilus" # open current dir GUI
-# alias asd="sudo pacman -Syu ; yay -Syu ; flatpak update ; bun upgrade"
-alias asd="sudo nala update && sudo nala upgrade -y && flatpak update && bun upgrade"
+# alias folder="dolphin" # open folder on arch
+alias folder="nautilus" # open folder on ubuntu
+# alias asd="sudo pacman -Syu ; yay -Syu ; flatpak update ; bun upgrade --stable"
+alias asd="sudo nala update && sudo nala upgrade -y && flatpak update && bun upgrade --stable"
 alias nv="nvim"
 # alias gcc="gcc -lcs50" # auto include CS50 library when compile C in CS50
+
+# functions
+mcd () {
+    mkdir -p "$1"
+    cd "$1" || exit
+}
 
 # make CapsLock behave like Ctrl:
 setxkbmap -option ctrl:nocaps
