@@ -149,6 +149,11 @@ alias bd="bun run dev dev"
 alias bs="bun run server"
 alias bi="bun install"
 
+# dotnet related
+alias dw="dotnet watch"
+alias dr="dotnet run"
+alias di="dotnet restore" # dotnet install
+
 # basic
 alias c="clear"
 alias l="ls -Ghal --color=auto"
