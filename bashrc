@@ -173,6 +173,30 @@ mcd () {
     cd "$1" || exit
 }
 
+cdv () {
+    cd ~/.config/nvim/
+}
+
+cdf () {
+    cd ~/dotfiles/
+}
+
+cdp () {
+    cd ~/project/
+}
+
+cdw () {
+    cd ~/web/
+}
+
+cdl () {
+    cd ~/learn/
+}
+
+cde () {
+    cd ~/exercism/csharp/
+}
+
 # make CapsLock behave like Ctrl:
 setxkbmap -option ctrl:nocaps
 # make short-pressed Ctrl behave like Escape:
