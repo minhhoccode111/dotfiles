@@ -142,6 +142,7 @@ alias gc="git commit -m "
 alias gs="git status"
 alias gp="git push origin" # push default
 alias gpd="git push origin develop"
+alias gf="git fetch"
 
 # bun related
 alias nt="bun run test"
@@ -159,12 +160,13 @@ alias defu="dotnet ef database update"
 # basic
 alias c="clear"
 alias l="ls -Ghal --color=auto"
-alias off="sudo poweroff"
+alias off="poweroff"
 # alias folder="dolphin" # open folder on arch
 alias folder="nautilus" # open folder on ubuntu
 # alias asd="sudo pacman -Syu ; yay -Syu ; flatpak update ; bun upgrade --stable"
 alias asd="sudo nala update && sudo nala upgrade -y && flatpak update && bun upgrade --stable"
 alias nv="nvim"
+alias fd=fdfind # fd on ubuntu is fdfind
 # alias gcc="gcc -lcs50" # auto include CS50 library when compile C in CS50
 
 # functions
