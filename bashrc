@@ -124,9 +124,17 @@ fi
 [[ $- != *i* ]] && return
 
 # default
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
-PS1='[\u@\h \W]\$ '
+alias ls="ls --color=auto"
+alias grep="grep --color=auto"
+
+# more
+alias sl=ls # save you from mistyping
+# better default
+alias mv="mv -i"
+alias mkdir="mkdir -p"
+alias df="df -h"
+
+PS1="mhc \w> "
 
 # change dir
 alias cd1="cd ../"
@@ -165,6 +173,7 @@ alias off="poweroff"
 alias folder="nautilus" # open folder on ubuntu
 # alias asd="sudo pacman -Syu ; yay -Syu ; flatpak update ; bun upgrade --stable"
 alias asd="sudo nala update && sudo nala upgrade -y && flatpak update && bun upgrade --stable"
+alias v="nvim"
 alias nv="nvim"
 alias fd=fdfind # fd on ubuntu is fdfind
 # alias gcc="gcc -lcs50" # auto include CS50 library when compile C in CS50
@@ -173,6 +182,12 @@ alias fd=fdfind # fd on ubuntu is fdfind
 mcd () {
     mkdir -p "$1"
     cd "$1" || exit
+}
+
+# my personal shortcut git clone
+gcl () {
+    git clone git@github.com:minhhoccode111/$1.git $2
+    cd "${2:-$1}" || exit
 }
 
 cdv () {
