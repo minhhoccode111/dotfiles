@@ -16,8 +16,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=20000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -123,25 +123,31 @@ fi
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# default
+# better default
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
-
-# more
-alias sl=ls # save you from mistyping
-# better default
 alias mv="mv -i"
 alias mkdir="mkdir -p"
 alias df="df -h"
+alias v="nvim"
+alias nv="nvim"
+alias fd=fdfind # fd on ubuntu is fdfind
+alias sl=ls # save you from mistyping
 
-PS1="mhc \w> "
+get_git_branch() {
+  git branch 2>/dev/null | grep "^*" | colrm 1 2
+}
+
+# example: "mhc ~/dotfiles main> "
+# PS1='mhc \w $(get_git_branch)> '
+PS1='\w $(get_git_branch)> '
 
 # change dir
-alias cd1="cd ../"
-alias cd2="cd ../../"
-alias cd3="cd ../../../"
-alias cd4="cd ../../../../"
-alias cd5="cd ../../../../../"
+alias 1="cd ../"
+alias 2="cd ../../"
+alias 3="cd ../../../"
+alias 4="cd ../../../../"
+alias 5="cd ../../../../../"
 
 # git related
 alias log="git log --all --oneline --graph"
@@ -152,31 +158,30 @@ alias gp="git push origin" # push default
 alias gpd="git push origin develop"
 alias gf="git fetch"
 
-# bun related
-alias nt="bun run test"
-alias bd="bun run dev dev"
-alias bs="bun run server"
-alias bi="bun install"
+# npm related
+alias nsv="npm run server"
+alias nw="npm run watch"
+alias nb="npm run build"
+alias nt="npm run test"
+alias nd="npm run dev"
+alias ni="npm install"
+alias ns="npm start"
 
 # dotnet related
 alias dw="dotnet watch"
 alias db="dotnet build"
+alias dt="dotnet test"
 alias dr="dotnet run"
-alias di="dotnet restore" # dotnet install
-alias defu="dotnet ef database update"
+alias di="dotnet restore"
+alias deu="dotnet ef database update"
 
 # basic
 alias c="clear"
 alias l="ls -Ghal --color=auto"
 alias off="poweroff"
-# alias folder="dolphin" # open folder on arch
-alias folder="nautilus" # open folder on ubuntu
-# alias asd="sudo pacman -Syu ; yay -Syu ; flatpak update ; bun upgrade --stable"
-alias asd="sudo nala update && sudo nala upgrade -y && flatpak update && bun upgrade --stable"
-alias v="nvim"
-alias nv="nvim"
-alias fd=fdfind # fd on ubuntu is fdfind
-# alias gcc="gcc -lcs50" # auto include CS50 library when compile C in CS50
+alias folder="nautilus" # or dolphin # open folder GUI
+alias asd="sudo nala update && sudo nala upgrade -y && flatpak update && bun upgrade --stable" # or pacman -Syu # update system packages
+# alias gcc="gcc -lcs50" # auto include CS50 library
 
 # functions
 mcd () {
@@ -222,18 +227,10 @@ xcape -e 'Control_L=Escape'
 # cs50 library
 # export LD_LIBRARY_PATH=/usr/local/lib
 
-# editor default, use short cut `ctrl-x` `ctrl-e` will edit current bash readline in $EDITOR
+# default editor
+# <ctrl-x> + <ctrl-e> to edit current command in $EDITOR
+# or `fc` to edit last command in $EDITOR
 export EDITOR=nvim
-
-# auto complete alacritty terminal
-source ~/.bash_completion/alacritty
-
-# things add to bash_profile are only effective after we login
-# this line make things take effect each time we open a new terminal
-source ~/.bash_profile
-
-# flex arch linux
-# neofetch
 
 # Add .NET Core SDK tools
 export PATH="$PATH:/opt/mssql-tools18/bin"
@@ -245,11 +242,35 @@ export PATH=$BUN_INSTALL/bin:$PATH
 # go
 export PATH=$PATH:/usr/local/go/bin
 
-# rustup
-. "$HOME/.cargo/env"
+. "$HOME/.bash_completion/alacritty" # alacritty
+. "$HOME/.cargo/env" # rustup
+. "$HOME/.exercism/exercism_completion.bash" # exercism
 
 # nvm
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# .net
+# check for .net installation paths
+# and set DOTNET_ROOT accordingly
+# makes this work on both my laptop and pc
+# because somehow they are in different location
+if [ -d "/usr/lib/dotnet" ]; then
+    export DOTNET_ROOT=/usr/lib/dotnet
+elif [ -d "/usr/share/dotnet" ]; then
+    export DOTNET_ROOT=/usr/share/dotnet
+else
+    echo "Warning: .NET installation not found in expected locations"
+fi
+export PATH=$PATH:$DOTNET_ROOT
+export ASPNETCORE_ENVIRONMENT=Development
+
+# pnpm
+export PNPM_HOME="/home/mhc/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

@@ -7,32 +7,10 @@ Optional files:
 - `alacritty.toml` (if you use Alacritty terminal)
 - `.obsidian.vimrc` (if you use Vim mode in Obsidian Note)
 
-## Note
-
-This repo's `main` branch is setup for Ubuntu with below architecture
-
-```bash
-OS: Ubuntu 22.04.4 LTS x86_64
-Host: VivoBook_ASUSLaptop X431FA_S431FA 1.0
-Kernel: 6.5.0-44-generic
-Shell: bash 5.1.16
-Resolution: 1920x1080
-DE: GNOME 42.9
-Terminal: Alacritty
-CPU: Intel i5-8265U (8) @ 3.900GHz
-GPU: Intel WhiskeyLake-U GT2 [UHD Graphics 620]
-Memory: 0000MiB / 7678MiB
-```
-
-For other architecture and linux distro, check out another branch
-
 ## Clone the repo
 
 ```bash
 git clone git@github.com:minhhoccode111/dotfiles.git ~/dotfiles/
-
-# cd ~/dotfiles/
-# git checkout pc-ubuntu # example
 ```
 
 ## Backup existing dot files
@@ -42,6 +20,7 @@ mkdir ~/old_dotfiles
 cd ~/old_dotfiles
 
 mv ~/.bashrc ./bashrc
+mv ~/.tmux.conf ./tmux.conf
 mv ~/.gitconfig ./gitconfig
 mv ~/.vimrc ./vimrc
 
@@ -53,6 +32,7 @@ mv ~/Documents/current-obsidian/.obsidian.vimrc ./obsidian.vimrc
 
 ```bash
 ln -s ~/dotfiles/bashrc ~/.bashrc
+ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/gitconfig ~/.gitconfig
 ln -s ~/dotfiles/vimrc ~/.vimrc
 
