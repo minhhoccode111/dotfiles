@@ -124,13 +124,14 @@ fi
 [[ $- != *i* ]] && return
 
 # better default
-alias ls="ls --color=auto"
 alias grep="grep --color=auto"
-alias mv="mv -i"
+alias ls="ls --color=auto"
 alias mkdir="mkdir -p"
+alias mv="mv -i"
 alias df="df -h"
-alias v="nvim"
 alias nv="nvim"
+alias v="nvim"
+alias t="tmux"
 alias fd=fdfind # fd on ubuntu is fdfind
 alias sl=ls # save you from mistyping
 
@@ -151,12 +152,13 @@ alias 5="cd ../../../../../"
 
 # git related
 alias log="git log --all --oneline --graph"
-alias ga="git add ."
-alias gc="git commit -m "
+alias gp='git push origin $(get_git_branch)'
+alias gpl='git pull origin $(get_git_branch)'
+alias gc="git commit -m"
+alias gr="git restore ."
 alias gs="git status"
-alias gp="git push origin" # push default
-alias gpd="git push origin develop"
 alias gf="git fetch"
+alias ga="git add ."
 
 # npm related
 alias nsv="npm run server"

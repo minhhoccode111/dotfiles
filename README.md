@@ -11,67 +11,37 @@ Optional files:
 
 ```bash
 git clone git@github.com:minhhoccode111/dotfiles.git ~/dotfiles/
+cd ~/dotfiles/
 ```
 
 ## Backup existing dot files
 
 ```bash
-mkdir ~/old_dotfiles
-cd ~/old_dotfiles
-
-mv ~/.bashrc ./bashrc
-mv ~/.tmux.conf ./tmux.conf
-mv ~/.gitconfig ./gitconfig
-mv ~/.vimrc ./vimrc
-
-mv ~/.config/alacritty/alacritty.toml ./alacritty.toml
-mv ~/Documents/current-obsidian/.obsidian.vimrc ./obsidian.vimrc
+./backup.sh
 ```
 
 ## Create symbolic links
 
 ```bash
-ln -s ~/dotfiles/bashrc ~/.bashrc
-ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
-ln -s ~/dotfiles/gitconfig ~/.gitconfig
-ln -s ~/dotfiles/vimrc ~/.vimrc
-
-# NOTE: make sure ~/.config/alacritty/ dir existed
-ln -s ~/dotfiles/alacritty.toml ~/.config/alacritty/alacritty.toml
-
-# NOTE: make sure ~/Documents/current-obsidian/ dir existed
-ln -s ~/dotfiles/obsidian.vimrc ~/Documents/current-obsidian/.obsidian.vimrc
+./start.sh
 ```
 
-## Backup/restore pacman installed packages (optional)
+## Backup/restore installed packages to `~/dotfiles/packages/<package_manager_type>.lst`
 
 Backup
 
 ```bash
-pacman -Qqe | grep -v "$(pacman -Qqm)" > ~/dotfiles/packages/installed_pacman.lst
+./backup_packages.sh
 ```
 
 Restore
 
 ```bash
-cat ~/dotfiles/packages/installed_pacman.lst | xargs pacman -S --needed --noconfirm
-sudo pacman -Syu
+./restore_packages.sh
 ```
 
-## Backup/restore nala installed packages (optional)
-
-Backup
+## Restore your old dotfiles
 
 ```bash
-sudo dpkg --get-selections | grep install > ~/dotfiles/packages/installed_nala.lst
+./restore.sh
 ```
-
-Restore
-
-```bash
-sudo nala install $(cat ~/dotfiles/packages/installed_nala.lst)
-```
-
-## Destroy symbolic links
-
-Just simply delete current symbolic link files and put files in `old_dotfiles` back to normal place
