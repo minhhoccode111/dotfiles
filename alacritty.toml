@@ -1,25 +1,27 @@
 # Font configuration
-[font.normal] 
+[font.normal]
 # family = "AnonymiceProNerdFont"
 family = "CodeNewRomanNerdFont"
 style = "Regular"
 
-[font.italic] 
+[font.italic]
 # family = "AnonymiceProNerdFont"
 family = "CodeNewRomanNerdFont"
 style = "Italic"
 
-[font.bold] 
+[font.bold]
 # family = "AnonymiceProNerdFont"
 family = "CodeNewRomanNerdFont"
 style = "Bold"
 
 # font size
-[font] 
+[font]
 size = 16
 
-[window]
+[env]
+TERM = "xterm-256color"
 
+[window]
     # Dynamic Spread additional padding evenly around the terminal content.
 dynamic_padding = true
 
@@ -44,9 +46,9 @@ dynamic_padding = true
 startup_mode = "Maximized"
 
     # background opacity
-    # change with scroll title bar instead 
+    # change with scroll title bar instead
     # because of neovim won't be transparent all at
-# opacity = 1 
+# opacity = 1
 
 
 # [window.dimensions]
