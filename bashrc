@@ -134,6 +134,9 @@ alias v="nvim"
 alias t="tmux"
 alias fd=fdfind # fd on ubuntu is fdfind
 alias sl=ls # save you from mistyping
+# quick test exercism
+alias pt="python3 -m pytest -o markers=task " # + {exercise_test.py}
+alias p="python3"
 
 get_git_branch() {
   git branch 2>/dev/null | grep "^*" | colrm 1 2
