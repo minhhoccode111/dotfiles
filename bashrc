@@ -156,9 +156,13 @@ alias 5="cd ../../../../../"
 # git related
 alias log="git log --all --oneline --graph"
 alias gp='git push origin $(get_git_branch)'
+alias gpf='git push origin $(get_git_branch) --force'
 alias gpl='git pull origin $(get_git_branch)'
+alias gplf='git pull origin $(get_git_branch) --rebase --force'
 alias gc="git commit -m"
 alias gr="git restore ."
+alias grs="git restore . --staged"
+alias gr1="git reset HEAD^"
 alias gs="git status"
 alias gf="git fetch"
 alias ga="git add ."

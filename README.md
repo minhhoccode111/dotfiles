@@ -17,13 +17,13 @@ cd ~/dotfiles/
 ## Backup existing dot files
 
 ```bash
-./backup.sh
+./dotfiles_backup.sh
 ```
 
 ## Create symbolic links
 
 ```bash
-./start.sh
+./dotfiles_start.sh
 ```
 
 ## Backup/restore installed packages to `~/dotfiles/packages/<package_manager_type>.lst`
@@ -31,17 +31,17 @@ cd ~/dotfiles/
 Backup
 
 ```bash
-./backup_packages.sh
+./packages_backup.sh
 ```
 
 Restore
 
 ```bash
-./restore_packages.sh
+./packages_restore.sh
 ```
 
 ## Restore your old dotfiles
 
 ```bash
-./restore.sh
+./dotfiles_restore.sh
 ```

@@ -1273,6 +1273,8 @@ libmarkdown2:amd64				install
 libmatroska7:amd64				install
 libmaxminddb0:amd64				install
 libmbedcrypto7t64:amd64				install
+libmbedtls14t64:amd64				install
+libmbedx509-1t64:amd64				install
 libmbim-glib4:amd64				install
 libmbim-proxy					install
 libmbim-utils					install
@@ -1358,6 +1360,7 @@ libnvidia-fbc1-535:i386				install
 libnvidia-gl-535:amd64				install
 libnvidia-gl-535:i386				install
 libnvme1t64					install
+libobs0t64:amd64				install
 libodbc2:amd64					install
 libodbccr2:amd64				install
 libodbcinst2:amd64				install
@@ -1481,6 +1484,7 @@ libqmi-utils					install
 libqmobipocket2:amd64				install
 libqpdf29t64:amd64				install
 libqqwing2v5:amd64				install
+libqrcodegencpp1:amd64				install
 libqrencode4:amd64				install
 libqrtr-glib0:amd64				install
 libqt5charts5:amd64				install
@@ -1664,6 +1668,7 @@ libsqlcipher0:amd64				install
 libsqlite3-0:amd64				install
 libsratom-0-0:amd64				install
 libsrt1.5-gnutls:amd64				install
+libsrt1.5-openssl:amd64				install
 libss2:amd64					install
 libssh-4:amd64					install
 libssh-gcrypt-4:amd64				install
@@ -2454,6 +2459,8 @@ nvidia-kernel-source-535			install
 nvidia-prime					install
 nvidia-settings					install
 nvidia-utils-535				install
+obs-plugins:amd64				install
+obs-studio					install
 ocl-icd-libopencl1:amd64			install
 odbcinst					install
 okular						install
