@@ -137,6 +137,11 @@ alias sl=ls # save you from mistyping
 # quick test exercism
 alias pt="python3 -m pytest -o markers=task " # + {exercise_test.py}
 alias p="python3"
+# db kill quick kill all db engines running to save memory
+alias dbk="sudo systemctl stop mssql-server; sudo systemctl stop mongod; sudo systemctl stop mysql; sudo systemctl stop postgresql;"
+# db status
+alias dbs="sudo systemctl status mssql-server; sudo systemctl status mongod; sudo systemctl status mysql; sudo systemctl status postgresql;"
+alias s="source ~/dotfiles/bashrc"
 
 get_git_branch() {
   git branch 2>/dev/null | grep "^*" | colrm 1 2
@@ -175,6 +180,24 @@ alias nt="npm run test"
 alias nd="npm run dev"
 alias ni="npm install"
 alias ns="npm start"
+
+# yarn related
+alias ysv="yarn run server"
+alias yw="yarn run watch"
+alias yb="yarn run build"
+alias yt="yarn run test"
+alias yd="yarn run dev"
+alias yi="yarn install"
+alias ys="yarn start"
+
+# bun related
+alias bsv="bun run server"
+alias bw="bun run watch"
+alias bb="bun run build"
+alias bt="bun run test"
+alias bd="bun run dev"
+alias bi="bun install"
+alias bs="bun start"
 
 # dotnet related
 alias dw="dotnet watch"
