@@ -102,7 +102,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+    . "$HOME/.bash_aliases"
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -141,7 +141,7 @@ alias p="python3"
 alias dbk="sudo systemctl stop mssql-server; sudo systemctl stop mongod; sudo systemctl stop mysql; sudo systemctl stop postgresql;"
 # db status
 alias dbs="sudo systemctl status mssql-server; sudo systemctl status mongod; sudo systemctl status mysql; sudo systemctl status postgresql;"
-alias s="source ~/dotfiles/bashrc"
+alias s="source $HOME/.bashrc"
 
 get_git_branch() {
   git branch 2>/dev/null | grep "^*" | colrm 1 2
@@ -171,6 +171,7 @@ alias gr1="git reset HEAD^"
 alias gs="git status"
 alias gf="git fetch"
 alias ga="git add ."
+alias gd="git diff"
 
 # npm related
 alias nsv="npm run server"
@@ -223,32 +224,32 @@ mcd () {
 
 # my personal shortcut git clone
 gcl () {
-    git clone git@github.com:minhhoccode111/$1.git $2
+    "git clone git@github.com:minhhoccode111/$1.git $2"
     cd "${2:-$1}" || exit
 }
 
 cdv () {
-    cd ~/.config/nvim/
+    cd ~/.config/nvim/ || exit
 }
 
 cdf () {
-    cd ~/dotfiles/
+    cd ~/dotfiles/ || exit
 }
 
 cdp () {
-    cd ~/project/
+    cd ~/project/ || exit
 }
 
 cdw () {
-    cd ~/web/
+    cd ~/web/ || exit
 }
 
 cdl () {
-    cd ~/learn/
+    cd ~/learn/ || exit
 }
 
 cde () {
-    cd ~/exercism/csharp/
+    cd ~/exercism/csharp/ || exit
 }
 
 # make CapsLock behave like Ctrl:
@@ -305,4 +306,17 @@ case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-# pnpm end
+
+# golang
+export PATH=$PATH:$HOME/go/bin
+
+# flutter
+export PATH=$PATH:$HOME/app/flutter/bin
+
+# android
+export ANDROID_HOME=$HOME/Android/Sdk
+export ANDROID_SDK_ROOT=$ANDROID_HOME
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin/
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/emulator
