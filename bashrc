@@ -224,8 +224,8 @@ mcd () {
 
 # my personal shortcut git clone
 gcl () {
-    "git clone git@github.com:minhhoccode111/$1.git $2"
-    cd "${2:-$1}" || exit
+    git clone git@github.com:minhhoccode111/$1.git $2
+    cd "${2:-$1}"
 }
 
 cdv () {
