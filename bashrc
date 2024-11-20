@@ -4,8 +4,8 @@
 
 # If not running interactively, don't do anything
 case $- in
-    *i*) ;;
-      *) return;;
+*i*) ;;
+*) return ;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -32,12 +32,12 @@ shopt -s checkwinsize
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+	debian_chroot=$(cat /etc/debian_chroot)
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
+xterm-color | *-256color) color_prompt=yes ;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -46,42 +46,41 @@ esac
 #force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
+	if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+		# We have color support; assume it's compliant with Ecma-48
+		# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+		# a case would tend to support setf rather than setaf.)
+		color_prompt=yes
+	else
+		color_prompt=
+	fi
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+	PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
+xterm* | rxvt*)
+	PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+	;;
+*) ;;
 esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+	alias ls='ls --color=auto'
+	#alias dir='dir --color=auto'
+	#alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+	alias grep='grep --color=auto'
+	alias fgrep='fgrep --color=auto'
+	alias egrep='egrep --color=auto'
 fi
 
 # colored GCC warnings and errors
@@ -102,18 +101,18 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
-    . "$HOME/.bash_aliases"
+	. "$HOME/.bash_aliases"
 fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
+	if [ -f /usr/share/bash-completion/bash_completion ]; then
+		. /usr/share/bash-completion/bash_completion
+	elif [ -f /etc/bash_completion ]; then
+		. /etc/bash_completion
+	fi
 fi
 
 ################################################################################
@@ -133,7 +132,7 @@ alias nv="nvim"
 alias v="nvim"
 alias t="tmux"
 alias fd=fdfind # fd on ubuntu is fdfind
-alias sl=ls # save you from mistyping
+alias sl=ls     # save you from mistyping
 # quick test exercism
 alias pt="python3 -m pytest -o markers=task " # + {exercise_test.py}
 alias p="python3"
@@ -144,7 +143,7 @@ alias dbs="sudo systemctl status mssql-server; sudo systemctl status mongod; sud
 alias s="source $HOME/.bashrc"
 
 get_git_branch() {
-  git branch 2>/dev/null | grep "^*" | colrm 1 2
+	git branch 2>/dev/null | grep "^*" | colrm 1 2
 }
 
 # example: "mhc ~/dotfiles main> "
@@ -205,6 +204,7 @@ alias dw="dotnet watch"
 alias db="dotnet build"
 alias dt="dotnet test"
 alias dr="dotnet run"
+alias dn="dotnet new"
 alias di="dotnet restore"
 alias deu="dotnet ef database update"
 
@@ -212,44 +212,44 @@ alias deu="dotnet ef database update"
 alias c="clear"
 alias l="ls -Ghal --color=auto"
 alias off="poweroff"
-alias folder="nautilus" # or dolphin # open folder GUI
+alias folder="nautilus"                                                                        # or dolphin # open folder GUI
 alias asd="sudo nala update && sudo nala upgrade -y && flatpak update && bun upgrade --stable" # or pacman -Syu # update system packages
 # alias gcc="gcc -lcs50" # auto include CS50 library
 
 # functions
-mcd () {
-    mkdir -p "$1"
-    cd "$1" || exit
+mcd() {
+	mkdir -p "$1"
+	cd "$1" || exit
 }
 
 # my personal shortcut git clone
-gcl () {
-    git clone git@github.com:minhhoccode111/$1.git $2
-    cd "${2:-$1}"
+gcl() {
+	git clone git@github.com:minhhoccode111/$1.git $2
+	cd "${2:-$1}"
 }
 
-cdv () {
-    cd ~/.config/nvim/ || exit
+cdv() {
+	cd ~/.config/nvim/ || exit
 }
 
-cdf () {
-    cd ~/dotfiles/ || exit
+cdf() {
+	cd ~/dotfiles/ || exit
 }
 
-cdp () {
-    cd ~/project/ || exit
+cdp() {
+	cd ~/project/ || exit
 }
 
-cdw () {
-    cd ~/web/ || exit
+cdw() {
+	cd ~/web/ || exit
 }
 
-cdl () {
-    cd ~/learn/ || exit
+cdl() {
+	cd ~/learn/ || exit
 }
 
-cde () {
-    cd ~/exercism/csharp/ || exit
+cde() {
+	cd ~/exercism/csharp/ || exit
 }
 
 # make CapsLock behave like Ctrl:
@@ -275,15 +275,15 @@ export PATH=$BUN_INSTALL/bin:$PATH
 # go
 export PATH=$PATH:/usr/local/go/bin
 
-. "$HOME/.bash_completion/alacritty" # alacritty
-. "$HOME/.cargo/env" # rustup
+. "$HOME/.bash_completion/alacritty"         # alacritty
+. "$HOME/.cargo/env"                         # rustup
 . "$HOME/.exercism/exercism_completion.bash" # exercism
 
 # nvm
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 # .net
 # check for .net installation paths
@@ -291,11 +291,11 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 # makes this work on both my laptop and pc
 # because somehow they are in different location
 if [ -d "/usr/lib/dotnet" ]; then
-    export DOTNET_ROOT=/usr/lib/dotnet
+	export DOTNET_ROOT=/usr/lib/dotnet
 elif [ -d "/usr/share/dotnet" ]; then
-    export DOTNET_ROOT=/usr/share/dotnet
+	export DOTNET_ROOT=/usr/share/dotnet
 else
-    echo "Warning: .NET installation not found in expected locations"
+	echo "Warning: .NET installation not found in expected locations"
 fi
 export PATH=$PATH:$DOTNET_ROOT
 export ASPNETCORE_ENVIRONMENT=Development
@@ -303,8 +303,8 @@ export ASPNETCORE_ENVIRONMENT=Development
 # pnpm
 export PNPM_HOME="/home/mhc/.local/share/pnpm"
 case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+*":$PNPM_HOME:"*) ;;
+*) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
 # golang
@@ -320,3 +320,9 @@ export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/
 export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin/
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_HOME/emulator
+
+# open Man page in nvim instead of less for readability and navigation
+export MANPAGER='nvim +Man!'
+
+# Shell keybind widgets: Wikiman can be launched using a shell key binding (default: Ctrl+F). Current command line buffer will be used as a search query
+source /usr/share/wikiman/widgets/widget.bash
