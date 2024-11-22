@@ -214,6 +214,8 @@ alias l="ls -Ghal --color=auto"
 alias off="poweroff"
 alias folder="nautilus"                                                                        # or dolphin # open folder GUI
 alias asd="sudo nala update && sudo nala upgrade -y && flatpak update && bun upgrade --stable" # or pacman -Syu # update system packages
+alias sni="sudo nala install -y"
+alias snr="sudo nala remove -y"
 # alias gcc="gcc -lcs50" # auto include CS50 library
 
 # functions
