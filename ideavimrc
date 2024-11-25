@@ -1,0 +1,17 @@
+" .vimrc for Vim Motion in Rider
+
+" .ideavimrc is a configuration file for IdeaVim plugin. It uses
+"   the same commands as the original .vimrc configuration.
+" You can find a list of commands here: https://jb.gg/h38q75
+" Find more examples here: https://jb.gg/share-ideavimrc
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+
+" Source your .vimrc
+source ~/.vimrc
+
+" --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
+" Highlight copied text
+Plug 'machakann/vim-highlightedyank'
+" Commentary plugin
+Plug 'tpope/vim-commentary'
+" and more

@@ -4,6 +4,7 @@ ln -s ~/dotfiles/bashrc ~/.bashrc
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/gitconfig ~/.gitconfig
 ln -s ~/dotfiles/vimrc ~/.vimrc
+ln -s ~/dotfiles/ideavimrc ~/.ideavimrc
 
 # Create ~/.config/alacritty if it doesn't exist
 mkdir -p ~/.config/alacritty
