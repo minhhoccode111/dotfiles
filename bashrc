@@ -205,6 +205,7 @@ alias db="dotnet build"
 alias dt="dotnet test"
 alias dr="dotnet run"
 alias dn="dotnet new"
+alias dnh="dotnet new --output ." # dotnet new here
 alias di="dotnet restore"
 alias deu="dotnet ef database update"
 
@@ -252,6 +253,14 @@ cdl() {
 
 cde() {
 	cd ~/exercism/csharp/ || exit
+}
+
+cdoc() {
+	cd ~/Documents/ || exit
+}
+
+cdow() {
+	cd ~/Downloads/ || exit
 }
 
 # make CapsLock behave like Ctrl:
