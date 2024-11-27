@@ -217,6 +217,7 @@ alias folder="nautilus"                                                         
 alias asd="sudo nala update && sudo nala upgrade -y && flatpak update && bun upgrade --stable" # or pacman -Syu # update system packages
 alias sni="sudo nala install -y"
 alias snr="sudo nala remove -y"
+alias snl="sudo nala list --upgradable"
 # alias gcc="gcc -lcs50" # auto include CS50 library
 
 # functions
@@ -228,7 +229,7 @@ mcd() {
 # my personal shortcut git clone
 gcl() {
 	git clone git@github.com:minhhoccode111/$1.git $2
-	cd "${2:-$1}"
+	# cd "${2:-$1}" # don't cd to it
 }
 
 cdv() {
@@ -252,7 +253,7 @@ cdl() {
 }
 
 cde() {
-	cd ~/exercism/csharp/ || exit
+	cd ~/exercism || exit
 }
 
 cdoc() {
@@ -288,7 +289,7 @@ export PATH=$PATH:/usr/local/go/bin
 
 . "$HOME/.bash_completion/alacritty"         # alacritty
 . "$HOME/.cargo/env"                         # rustup
-. "$HOME/.exercism/exercism_completion.bash" # exercism
+. "$HOME/shell/exercism_completion.bash" # exercism
 
 # nvm
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
