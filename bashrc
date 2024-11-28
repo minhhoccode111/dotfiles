@@ -205,7 +205,6 @@ alias db="dotnet build"
 alias dt="dotnet test"
 alias dr="dotnet run"
 alias dn="dotnet new"
-alias dnh="dotnet new --output ." # dotnet new here
 alias di="dotnet restore"
 alias deu="dotnet ef database update"
 
@@ -287,8 +286,8 @@ export PATH=$BUN_INSTALL/bin:$PATH
 # go
 export PATH=$PATH:/usr/local/go/bin
 
-. "$HOME/.bash_completion/alacritty"         # alacritty
-. "$HOME/.cargo/env"                         # rustup
+. "$HOME/.bash_completion/alacritty"     # alacritty
+. "$HOME/.cargo/env"                     # rustup
 . "$HOME/shell/exercism_completion.bash" # exercism
 
 # nvm
@@ -337,4 +336,8 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export MANPAGER='nvim +Man!'
 
 # Shell keybind widgets: Wikiman can be launched using a shell key binding (default: Ctrl+F). Current command line buffer will be used as a search query
-source /usr/share/wikiman/widgets/widget.bash
+# BUG: turn off because can't deal with fzf dependency downgrade
+# I want to use fzf latest but wikiman keep override with debian version
+# source /usr/share/wikiman/widgets/widget.bash
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
