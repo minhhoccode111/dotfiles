@@ -1,3 +1,8 @@
+[general]
+import = [
+    "~/.config/alacritty/themes/themes/catppuccin_mocha.toml"
+]
+
 # Font configuration
 [font.normal]
 # family = "AnonymiceProNerdFont"
@@ -76,5 +81,3 @@ startup_mode = "Maximized"
     # Number of lines the viewport will move for every line scrolled when
     # scrollback is enabled (history > 0).
 # multiplier = 3
-
-
