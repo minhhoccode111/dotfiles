@@ -143,6 +143,14 @@ alias dbk="sudo systemctl stop mssql-server; sudo systemctl stop mongod; sudo sy
 # db status
 alias dbs="sudo systemctl status mssql-server; sudo systemctl status mongod; sudo systemctl status mysql; sudo systemctl status postgresql;"
 alias s="source $HOME/.bashrc"
+# alias dart="fvm dart" # turn on if needed
+# default use fvm for flutter, remember to install fvm and activate it with
+# dart pub global activate fvm
+alias flutter="fvm flutter"
+alias f="fvm flutter"
+# tell bash to use the flutter autocomplete function for `f`
+# (remember to source the `~/shell/flutter_completion.bash`)file
+complete -F __flutter_completion f
 
 get_git_branch() {
 	git branch 2>/dev/null | grep "^*" | colrm 1 2
@@ -288,9 +296,11 @@ export PATH=$BUN_INSTALL/bin:$PATH
 # go
 export PATH=$PATH:/usr/local/go/bin
 
+# source auto completion
 . "$HOME/.bash_completion/alacritty"     # alacritty
 . "$HOME/.cargo/env"                     # rustup
 . "$HOME/shell/exercism_completion.bash" # exercism
+. "$HOME/shell/flutter_completion.bash"  # flutter
 
 # nvm
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
