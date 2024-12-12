@@ -131,6 +131,8 @@ alias df="df -h"
 alias nv="nvim"
 alias v="nvim"
 alias t="tmux"
+alias z="lazygit"
+alias y="yazi"
 alias fd=fdfind # fd on ubuntu is fdfind
 alias sl=ls     # save you from mistyping
 # quick test exercism
