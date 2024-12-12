@@ -1,0 +1,184 @@
+#!/usr/bin/env bash
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# Easier navigation
+alias 1="cd .."
+alias 2="cd ../.."
+alias 3="cd ../../.."
+alias 4="cd ../../../.."
+alias -- -="cd -"
+
+# Shortcuts
+alias cdoc="cd ~/Documents"
+alias cdow="cd ~/Downloads"
+alias cdp="cd ~/projects"
+alias cde="cd ~/exercism"
+alias cdv="cd ~/.config/nvim"
+alias cdf="cd ~/dotfiles"
+alias cdw="cd ~/web"
+alias cdl="cd ~/learn"
+alias g="git"
+
+# better default
+alias grep="grep --color=auto"
+alias ls="ls --color=auto"
+alias mkdir="mkdir -p"
+alias mv="mv -i"
+alias df="df -h"
+alias nv="nvim"
+alias v="nvim"
+alias t="tmux"
+alias z="lazygit"
+alias y="yazi"
+alias fd=fdfind # fd on ubuntu is fdfind
+alias sl=ls     # save you from mistyping
+
+alias s="source $HOME/.bash_profile"
+
+# FVM, Flutter, and Dark
+# activate FVM with:
+# dart pub global activate fvm
+alias dart="fvm dart"
+alias flutter="fvm flutter"
+alias f="fvm flutter"
+# ~/shell/flutter_completion.bash
+complete -F __flutter_completion f
+
+get_git_branch() {
+	git branch 2>/dev/null | grep "^*" | colrm 1 2
+}
+
+# example: "mhc ~/dotfiles main> "
+# PS1='mhc \w $(get_git_branch)> '
+# PS1='\w $(get_git_branch)> ' # set in .bash_prompt
+
+# git related
+alias log="git log --all --oneline --graph"
+alias gp='git push origin $(get_git_branch)'
+alias gpf='git push origin $(get_git_branch) --force'
+alias gpl='git pull origin $(get_git_branch)'
+alias gplf='git pull origin $(get_git_branch) --rebase --force'
+alias gc="git commit -m"
+alias gr="git restore ."
+alias grs="git restore . --staged"
+alias gr1="git reset HEAD^"
+alias gs="git status"
+alias gf="git fetch"
+alias ga="git add ."
+alias gd="git diff"
+
+# npm related
+alias nsv="npm run server"
+alias nw="npm run watch"
+alias nb="npm run build"
+alias nt="npm run test"
+alias nd="npm run dev"
+alias ni="npm install"
+alias ns="npm start"
+
+# yarn related
+alias ysv="yarn run server"
+alias yw="yarn run watch"
+alias yb="yarn run build"
+alias yt="yarn run test"
+alias yd="yarn run dev"
+alias yi="yarn install"
+alias ys="yarn start"
+
+# bun related
+alias bsv="bun run server"
+alias bw="bun run watch"
+alias bb="bun run build"
+alias bt="bun run test"
+alias bd="bun run dev"
+alias bi="bun install"
+alias bs="bun start"
+
+# dotnet related
+alias dw="dotnet watch"
+alias db="dotnet build"
+alias dt="dotnet test"
+alias dr="dotnet run"
+alias dn="dotnet new"
+alias di="dotnet restore"
+alias deu="dotnet ef database update"
+
+# basic
+alias c="clear"
+alias l="ls -Ghal --color=auto"
+alias off="poweroff"
+alias folder="nautilus"                                                                        # or dolphin # open folder GUI
+alias asd="sudo nala update && sudo nala upgrade -y && flatpak update && bun upgrade --stable" # or pacman -Syu # update system packages
+alias sni="sudo nala install -y"
+alias snr="sudo nala remove -y"
+alias snl="sudo nala list --upgradable"
+# alias gcc="gcc -lcs50" # auto include CS50 library
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# Detect which `ls` flavor is in use
+if ls --color >/dev/null 2>&1; then # GNU `ls`
+	colorflag="--color"
+	export LS_COLORS='no=00:fi=00:di=01;31:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:'
+fi
+
+# # List all files colorized in long format
+# alias l="ls -lF ${colorflag}"
+# # List all files colorized in long format, excluding . and ..
+# alias la="ls -lAF ${colorflag}"
+# # List only directories
+# alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
+
+# Always use color output for `ls`
+alias ls="command ls ${colorflag}"
+
+# Always enable colored `grep` output
+# Note: `GREP_OPTIONS="--color=auto"` is deprecated, hence the alias usage.
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# Enable aliases to be sudo’ed
+alias sudo='sudo '
+
+# Get week number
+alias week='date +%V'
+
+# IP addresses
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias localip="ipconfig getifaddr en0"
+alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
+
+# Show active network interfaces
+alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"
+
+# URL-encode strings
+alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
+
+# Merge PDF files, preserving hyperlinks
+# Usage: `mergepdf input{1,2,3}.pdf`
+alias mergepdf='gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=_merged.pdf'
+
+# Intuitive map function
+# For example, to list all directories that contain a certain file:
+# find . -name .gitattributes | map dirname
+alias map="xargs -n1"
+
+# One of @janmoesen’s ProTip™s
+for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
+	alias "${method}"="lwp-request -m '${method}'"
+done
+
+# Stuff I never really use but cannot delete either because of http://xkcd.com/530/
+alias stfu="osascript -e 'set volume output muted true'"
+alias pumpitup="osascript -e 'set volume output volume 100'"
+
+# Reload the shell (i.e. invoke as a login shell)
+alias reload="exec ${SHELL} -l"
+
+# Print each PATH entry on a separate line
+alias path='echo -e ${PATH//:/\\n}'

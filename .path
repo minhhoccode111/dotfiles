@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+# colored GCC warnings and errors
+# export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# cs50 library
+# export LD_LIBRARY_PATH=/usr/local/lib
+
+# default editor
+# <ctrl-x> + <ctrl-e> to edit current command in $EDITOR
+# or `fc` to edit last command in $EDITOR
+export EDITOR=nvim
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH=$BUN_INSTALL/bin:$PATH
+
+# go
+export PATH=$PATH:/usr/local/go/bin
+
+# golang
+export PATH=$PATH:$HOME/go/bin
+
+# nvm
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+
+# .net
+# check for .net installation paths
+# and set DOTNET_ROOT accordingly
+# makes this work on both my laptop and pc
+# because somehow they are in different location
+if [ -d "/usr/lib/dotnet" ]; then
+	export DOTNET_ROOT=/usr/lib/dotnet
+elif [ -d "/usr/share/dotnet" ]; then
+	export DOTNET_ROOT=/usr/share/dotnet
+else
+	echo "Warning: .NET installation not found in expected locations"
+fi
+export PATH=$PATH:$DOTNET_ROOT
+export ASPNETCORE_ENVIRONMENT=Development
+
+# Add .NET Core SDK tools
+export PATH="$PATH:/opt/mssql-tools18/bin"
+
+# pnpm
+export PNPM_HOME="/home/mhc/.local/share/pnpm"
+case ":$PATH:" in
+*":$PNPM_HOME:"*) ;;
+*) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# flutter
+export PATH=$PATH:$HOME/app/flutter/bin
+
+# android
+export ANDROID_HOME=$HOME/Android/Sdk
+export ANDROID_SDK_ROOT=$ANDROID_HOME
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin/
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/emulator
+
+# open Man page in nvim instead of less for readability and navigation
+export MANPAGER='nvim +Man!'

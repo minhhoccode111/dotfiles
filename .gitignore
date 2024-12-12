@@ -1,0 +1,5 @@
+# just in case
+node_module/
+
+# IDEs generated files
+.idea/
