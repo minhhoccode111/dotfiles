@@ -11,12 +11,6 @@ function mcd() {
 	mkdir -p "$@" && cd "$_"
 }
 
-# NOTE: conflict with cd ~/dotfiles/
-# # Change working directory to the top-most Finder window location
-# function cdf() { # short for `cdfinder`
-# 	cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')"
-# }
-
 # Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
 function targz() {
 	local tmpFile="${@%/}.tar"

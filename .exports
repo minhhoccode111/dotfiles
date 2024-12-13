@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-# Make vim the default editor.
-export EDITOR='vim'
+# Update $PATH for settings
 
 # Enable persistent REPL history for `node`.
 export NODE_REPL_HISTORY=~/.node_history
@@ -19,19 +18,21 @@ export HISTFILESIZE="${HISTSIZE}"
 # Omit duplicates and commands that begin with a space from history.
 export HISTCONTROL='ignoreboth'
 
-# Prefer US English and use UTF-8.
-export LANG='en_US.UTF-8'
-export LC_ALL='en_US.UTF-8'
+# # Deprecated
+# # Prefer US English and use UTF-8.
+# export LANG='en_US.UTF-8'
+# export LC_ALL='en_US.UTF-8'
 
 # Highlight section titles in manual pages.
 export LESS_TERMCAP_md="${yellow}"
 
-# Don’t clear the screen after quitting a manual page.
-export MANPAGER='less -X'
+# colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# Avoid issues with `gpg` as installed via Homebrew.
-# https://stackoverflow.com/a/42265848/96656
-export GPG_TTY=$(tty)
+# default editor
+# <C-x> + <C-e> to edit current command in $EDITOR
+# or `fc` to edit last command in $EDITOR
+export EDITOR=nvim
 
-# Hide the “default interactive shell is now zsh” warning on macOS.
-export BASH_SILENCE_DEPRECATION_WARNING=1
+# Open Man page in nvim instead of less for readability and navigation
+export MANPAGER='nvim +Man!'

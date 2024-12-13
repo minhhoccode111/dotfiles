@@ -1,29 +1,29 @@
 #!/usr/bin/env bash
 
-cd "$(dirname "${BASH_SOURCE}")"
-
-git pull origin main
-
 function doIt() {
 	# synchronizes all files and directories from current repo (.) to the home (~)
 	rsync --exclude ".git/" \
-		--exclude "scripts" \
+		--exclude "scripts/" \
 		--exclude "bootstrap.sh" \
-		--exclude "README.md" \
+		--exclude "apt.sh" \
+		--exclude "backup.sh" \
+		--exclude "kitty.conf" \
 		--exclude "alacritty.toml" \
 		--exclude "obsidian.vimrc" \
 		--exclude "README.md" \
 		-avh --no-perms . ~ # ensure no permissions lost
 
-	# Create ~/.config/alacritty if it doesn't exist
+	# kitty config file
+	mkdir -p ~/.config/kitty
+	ln -sf ~/dotfiles/kitty.conf ~/.config/kitty/kitty.conf
+
+	# alacritty config file
 	mkdir -p ~/.config/alacritty
-	ln -s ~/dotfiles/alacritty.toml ~/.config/alacritty/alacritty.toml
+	ln -sf ~/dotfiles/alacritty.toml ~/.config/alacritty/alacritty.toml
 
-	# Create ~/Documents/current-obsidian if it doesn't exist
+	# obsidian vimrc config file
 	mkdir -p ~/Documents/current-obsidian
-	ln -s ~/dotfiles/obsidian.vimrc ~/Documents/current-obsidian/.obsidian.vimrc
-
-	# TODO: add kitty.conf
+	ln -sf ~/dotfiles/obsidian.vimrc ~/Documents/current-obsidian/.obsidian.vimrc
 
 	source ~/.bash_profile
 }

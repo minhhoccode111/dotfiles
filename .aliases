@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 
+# Update and set shortcuts
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
+
+# Enable aliases to be sudo’ed
+alias sudo='sudo '
 
 # Easier navigation
 alias 1="cd .."
@@ -19,55 +24,62 @@ alias cdv="cd ~/.config/nvim"
 alias cdf="cd ~/dotfiles"
 alias cdw="cd ~/web"
 alias cdl="cd ~/learn"
-alias g="git"
 
 # better default
-alias grep="grep --color=auto"
-alias ls="ls --color=auto"
 alias mkdir="mkdir -p"
 alias mv="mv -i"
-alias df="df -h"
+alias df="df -h" # filesystem disk space usage
 alias nv="nvim"
 alias v="nvim"
 alias t="tmux"
 alias z="lazygit"
 alias y="yazi"
+alias g="git"
 alias fd=fdfind # fd on ubuntu is fdfind
-alias sl=ls     # save you from mistyping
+# alias gcc="gcc -lcs50" # auto include CS50 library
 
-alias s="source $HOME/.bash_profile"
+# basic
+alias s='source ~/.bash_profile'
+alias c="clear"
+alias l="ls -Ghal --color=auto"
+alias off="poweroff"
+# update system packages (or pacman -Syu)
+alias asd="sudo nala update && sudo nala upgrade -y && flatpak update && bun upgrade --stable"
+alias sni="sudo nala install -y"
+alias snr="sudo nala remove -y"
+alias snl="sudo nala list --upgradable"
 
-# FVM, Flutter, and Dark
+# FVM, Flutter, and Dark related
 # activate FVM with:
 # dart pub global activate fvm
-alias dart="fvm dart"
-alias flutter="fvm flutter"
+alias d="fvm dart"
 alias f="fvm flutter"
 # ~/shell/flutter_completion.bash
 complete -F __flutter_completion f
 
+# git related
 get_git_branch() {
 	git branch 2>/dev/null | grep "^*" | colrm 1 2
 }
 
 # example: "mhc ~/dotfiles main> "
-# PS1='mhc \w $(get_git_branch)> '
-# PS1='\w $(get_git_branch)> ' # set in .bash_prompt
+# PS1="mhc \w $(get_git_branch)> "
+# PS1="\w $(get_git_branch)> " # set in .bash_prompt
 
 # git related
 alias log="git log --all --oneline --graph"
-alias gp='git push origin $(get_git_branch)'
-alias gpf='git push origin $(get_git_branch) --force'
-alias gpl='git pull origin $(get_git_branch)'
-alias gplf='git pull origin $(get_git_branch) --rebase --force'
+alias gp="git push origin $(get_git_branch)"
+alias gpf="git push origin $(get_git_branch) --force"
+alias gpl="git pull origin $(get_git_branch)"
+alias gplf="git pull origin $(get_git_branch) --rebase --force"
 alias gc="git commit -m"
 alias gr="git restore ."
-alias grs="git restore . --staged"
 alias gr1="git reset HEAD^"
 alias gs="git status"
 alias gf="git fetch"
 alias ga="git add ."
-alias gd="git diff"
+
+unset get_git_branch
 
 # npm related
 alias nsv="npm run server"
@@ -105,17 +117,6 @@ alias dn="dotnet new"
 alias di="dotnet restore"
 alias deu="dotnet ef database update"
 
-# basic
-alias c="clear"
-alias l="ls -Ghal --color=auto"
-alias off="poweroff"
-alias folder="nautilus"                                                                        # or dolphin # open folder GUI
-alias asd="sudo nala update && sudo nala upgrade -y && flatpak update && bun upgrade --stable" # or pacman -Syu # update system packages
-alias sni="sudo nala install -y"
-alias snr="sudo nala remove -y"
-alias snl="sudo nala list --upgradable"
-# alias gcc="gcc -lcs50" # auto include CS50 library
-
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -141,9 +142,6 @@ alias ls="command ls ${colorflag}"
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-
-# Enable aliases to be sudo’ed
-alias sudo='sudo '
 
 # Get week number
 alias week='date +%V'
@@ -172,10 +170,6 @@ alias map="xargs -n1"
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
 	alias "${method}"="lwp-request -m '${method}'"
 done
-
-# Stuff I never really use but cannot delete either because of http://xkcd.com/530/
-alias stfu="osascript -e 'set volume output muted true'"
-alias pumpitup="osascript -e 'set volume output volume 100'"
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec ${SHELL} -l"

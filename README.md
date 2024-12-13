@@ -1,47 +1,20 @@
 # Dotfiles
 
-This repo is used to quickly get setup any Linux machine with basic settings for `.bashrc`, `.vimrc`, and `.gitconfig`
+My dotfiles
 
-Optional files:
+**Warning**: If you want to give these dotfiles a try, you should first fork this repository, review the code, and remove things you don’t want or need. Don’t blindly use my settings unless you know what that entails. Use at your own risk!
 
-- `alacritty.toml` (if you use Alacritty terminal)
-- `.obsidian.vimrc` (if you use Vim mode in Obsidian Note)
+## Getting started
 
-## Clone the repo
+Clone the repository
 
 ```bash
 git clone git@github.com:minhhoccode111/dotfiles.git ~/dotfiles/
 cd ~/dotfiles/
 ```
 
-## Backup existing dot files
+Run the script
 
 ```bash
-./dotfiles_backup.sh
-```
-
-## Create symbolic links
-
-```bash
-./dotfiles_start.sh
-```
-
-## Backup/restore installed packages to `~/dotfiles/packages/<package_manager_type>.lst`
-
-Backup
-
-```bash
-./packages_backup.sh
-```
-
-Restore
-
-```bash
-./packages_restore.sh
-```
-
-## Restore your old dotfiles
-
-```bash
-./dotfiles_restore.sh
+source bootstrap.sh
 ```
