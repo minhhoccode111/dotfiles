@@ -34,7 +34,7 @@ alias v="nvim"
 alias t="tmux"
 alias z="lazygit"
 alias y="yazi"
-alias g="git"
+# alias g="git"
 alias fd=fdfind # fd on ubuntu is fdfind
 # alias gcc="gcc -lcs50" # auto include CS50 library
 
@@ -78,8 +78,6 @@ alias gr1="git reset HEAD^"
 alias gs="git status"
 alias gf="git fetch"
 alias ga="git add ."
-
-unset get_git_branch
 
 # npm related
 alias nsv="npm run server"
