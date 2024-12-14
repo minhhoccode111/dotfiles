@@ -34,7 +34,6 @@ alias v="nvim"
 alias t="tmux"
 alias z="lazygit"
 alias y="yazi"
-# alias g="git"
 alias fd=fdfind # fd on ubuntu is fdfind
 # alias gcc="gcc -lcs50" # auto include CS50 library
 
@@ -57,27 +56,38 @@ alias f="fvm flutter"
 # ~/shell/flutter_completion.bash
 complete -F __flutter_completion f
 
-# git related
-get_git_branch() {
-	git branch 2>/dev/null | grep "^*" | colrm 1 2
-}
-
-# example: "mhc ~/dotfiles main> "
-# PS1="mhc \w $(get_git_branch)> "
-# PS1="\w $(get_git_branch)> " # set in .bash_prompt
-
-# git related
+# NOTE: git related
 alias log="git log --all --oneline --graph"
-alias gp='git push origin $(get_git_branch)'
-alias gpf='git push origin $(get_git_branch) --force'
-alias gpl='git pull origin $(get_git_branch)'
-alias gplf='git pull origin $(get_git_branch) --rebase --force'
 alias gc="git commit -m"
 alias gr="git restore ."
 alias gr1="git reset HEAD^"
 alias gs="git status"
 alias gf="git fetch"
 alias ga="git add ."
+
+# git related
+get_git_branch() {
+	git branch 2>/dev/null | grep "^*" | colrm 1 2
+}
+# example: "mhc ~/dotfiles main> "
+# PS1="mhc \w $(get_git_branch)> "
+# PS1="\w $(get_git_branch)> " # set in .bash_prompt
+
+# NOTE:
+# those dynamic get git branch must be use with single quote (') to preserve
+# the string so that the function get_git_branch() will be called at runtime
+# (when the alias is used) and we can get the branch name instead of calling
+# the function at compile time (when the alias is defined) and the branch name
+# won't change after we checkout to another branch
+alias gp='git push origin $(get_git_branch)'
+alias gpf='git push origin $(get_git_branch) --force'
+alias gpl='git pull origin $(get_git_branch)'
+alias gplf='git pull origin $(get_git_branch) --rebase --force'
+
+# https://askubuntu.com/questions/62095/how-to-alias-git-to-g-so-that-bash-completion-rules-are-preserved
+alias g='git'
+source /usr/share/bash-completion/completions/git
+__git_complete g __git_main # auto completion for 'g'
 
 # npm related
 alias nsv="npm run server"
@@ -146,18 +156,12 @@ alias week='date +%V'
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias localip="ipconfig getifaddr en0"
 alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
-
-# Show active network interfaces
-alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"
-
-# URL-encode strings
-alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
 
 # Merge PDF files, preserving hyperlinks
 # Usage: `mergepdf input{1,2,3}.pdf`
-alias mergepdf='gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=_merged.pdf'
+# use '/usr/bin/gs' because 'gs' is 'git status' alias
+alias mergepdf='/usr/bin/gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=_merged.pdf'
 
 # Intuitive map function
 # For example, to list all directories that contain a certain file:

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Update $PATH for settings
+# Update $PATH to extend settings
 
 # Enable persistent REPL history for `node`.
 export NODE_REPL_HISTORY=~/.node_history

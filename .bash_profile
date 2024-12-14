@@ -4,6 +4,8 @@ export PATH="$HOME/bin:$PATH"
 # Shell settings, source files + completions, run apps
 
 # If not running interactively, don't do anything
+# An interactive shell is one where the user interacts directly with it, like a command-line session in a terminal
+# Non-interactive shells are used to run scripts or commands automatically without user interaction
 case $- in
 *i*) ;;
 *) return ;;
@@ -21,10 +23,6 @@ for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
 done
 unset file
 
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
-
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -38,10 +36,16 @@ shopt -s histappend
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell
 
-# # Enable tab completion for `g` by marking it as an alias for `git`
-# if type _git &>/dev/null; then
-# 	complete -o default -o nospace -F _git g
-# fi
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+	if [ -f /usr/share/bash-completion/bash_completion ]; then
+		. /usr/share/bash-completion/bash_completion
+	elif [ -f /etc/bash_completion ]; then
+		. /etc/bash_completion
+	fi
+fi
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -67,15 +71,3 @@ xcape -e 'Control_L=Escape'
 # BUG: turn off because can't deal with fzf dependency downgrade
 # I want to use fzf latest but wikiman keep override with debian version
 # source /usr/share/wikiman/widgets/widget.bash
-
-# # NOTE: should I remove this?
-# # enable programmable completion features (you don't need to enable
-# # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# # sources /etc/bash.bashrc).
-# if ! shopt -oq posix; then
-# 	if [ -f /usr/share/bash-completion/bash_completion ]; then
-# 		. /usr/share/bash-completion/bash_completion
-# 	elif [ -f /etc/bash_completion ]; then
-# 		. /etc/bash_completion
-# 	fi
-# fi
