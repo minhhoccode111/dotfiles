@@ -15,15 +15,18 @@ function doIt() {
 
 	# kitty config file
 	mkdir -p ~/.config/kitty
-	ln -sf ~/dotfiles/kitty.conf ~/.config/kitty/kitty.conf
+	# ln -sf ~/dotfiles/kitty.conf ~/.config/kitty/kitty.conf
+	rsync -avh --no-perms ~/dotfiles/kitty.conf ~/.config/kitty/kitty.conf
 
 	# alacritty config file
 	mkdir -p ~/.config/alacritty
-	ln -sf ~/dotfiles/alacritty.toml ~/.config/alacritty/alacritty.toml
+	# ln -sf ~/dotfiles/alacritty.toml ~/.config/alacritty/alacritty.toml
+	rsync -avh --no-perms ~/dotfiles/alacritty.toml ~/.config/alacritty/alacritty.toml
 
 	# obsidian vimrc config file
 	mkdir -p ~/Documents/current-obsidian
-	ln -sf ~/dotfiles/obsidian.vimrc ~/Documents/current-obsidian/.obsidian.vimrc
+	# ln -sf ~/dotfiles/obsidian.vimrc ~/Documents/current-obsidian/.obsidian.vimrc
+	rsync -avh --no-perms ~/dotfiles/obsidian.vimrc ~/Documents/current-obsidian/.obsidian.vimrc
 
 	source ~/.bash_profile
 }
