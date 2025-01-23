@@ -36,3 +36,6 @@ export EDITOR=nvim
 
 # Open Man page in nvim instead of less for readability and navigation
 export MANPAGER='nvim +Man!'
+
+# nvim theme, can be overrided by the one in .extra
+export NVIM_THEME=catppuccin-mocha
