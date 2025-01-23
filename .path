@@ -38,6 +38,9 @@ esac
 # flutter
 export PATH=$PATH:$HOME/app/flutter/bin
 
+# zig
+export PATH=$PATH:$HOME/app/zig
+
 # fvm
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 
