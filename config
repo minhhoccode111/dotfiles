@@ -1,0 +1,24 @@
+font-family = "CodeNewRoman Nerd Font Mono"
+font-size = 15
+
+# fullscreen = true
+# title = ""
+window-decoration = false
+
+background-opacity = 0.925
+
+scrollback-limit = 10000
+
+window-theme = dark
+
+# THEME
+
+# background = 000000
+# foreground = 00ff00
+
+# config-file = ./theme
+
+# clone this repo and extract the 'themes' dir in it and place in
+# '~/.config/ghostty/themes'
+# git@github.com:catppuccin/ghostty.git
+theme = dark:catppuccin-mocha.conf,light:catppuccin-frappe.conf

@@ -8,10 +8,16 @@ function doIt() {
 		--exclude "apt.sh" \
 		--exclude "backup.sh" \
 		--exclude "kitty.conf" \
+		--exclude "config" \
 		--exclude "alacritty.toml" \
 		--exclude "obsidian.vimrc" \
 		--exclude "README.md" \
 		-avh --no-perms . ~ # ensure no permissions lost
+
+	# ghostty config file
+	mkdir -p ~/.config/ghostty
+	# ln -sf ~/dotfiles/config ~/.config/ghostty/config
+	rsync -avh --no-perms ~/dotfiles/config ~/.config/ghostty/config
 
 	# kitty config file
 	mkdir -p ~/.config/kitty
