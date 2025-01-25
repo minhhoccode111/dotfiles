@@ -1,23 +1,28 @@
 # [general]
 import = [
-    "~/.config/alacritty/themes/themes/catppuccin_mocha.toml"
+    # theme repo: https://github.com/alacritty/alacritty-theme
+    # "~/.config/alacritty/themes/themes/catppuccin_mocha.toml"
+
+    # copy the theme file content and place at root with alacritty.toml instead
+    # of hardcoded like above, help change theme local easier
+    "~/.config/alacritty/current.toml"
 ]
 
 # Font configuration
 [font.normal]
 # family = "AnonymiceProNerdFont"
-family = "CodeNewRomanNerdFont"
+family = "CodeNewRoman Nerd Font Mono"
 style = "Regular"
 
-[font.italic]
-# family = "AnonymiceProNerdFont"
-family = "CodeNewRomanNerdFont"
-style = "Italic"
+# [font.italic]
+# # family = "AnonymiceProNerdFont"
+# family = "CodeNewRomanNerdFont"
+# style = "Italic"
 
-[font.bold]
-# family = "AnonymiceProNerdFont"
-family = "CodeNewRomanNerdFont"
-style = "Bold"
+# [font.bold]
+# # family = "AnonymiceProNerdFont"
+# family = "CodeNewRomanNerdFont"
+# style = "Bold"
 
 # font size
 [font]
@@ -25,6 +30,10 @@ size = 15
 
 [env]
 TERM = "xterm-256color"
+
+[selection]
+# When set to true, selected text will be copied to the primary clipboard.
+save_to_clipboard = true
 
 [window]
     # Dynamic Spread additional padding evenly around the terminal content.
@@ -53,7 +62,7 @@ startup_mode = "Maximized"
     # background opacity
     # change with scroll title bar instead
     # because of neovim won't be transparent all at
-opacity = 0.925
+opacity = 0.92
 
 
 # [window.dimensions]
@@ -67,7 +76,7 @@ opacity = 0.925
 # [window.padding]
     # Window padding (changes require restart)
     #
-    # Blank space added around the window in pixels. This padding is not scaled 
+    # Blank space added around the window in pixels. This padding is not scaled
     # by DPI and the specified value is always added at both opposing sides.
 # x = 0
 # y = 0
