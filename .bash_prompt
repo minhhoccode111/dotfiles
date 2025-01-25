@@ -4,6 +4,9 @@ if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/n
 	export TERM='gnome-256color'
 elif infocmp xterm-256color >/dev/null 2>&1; then
 	export TERM='xterm-256color'
+
+	# export TERM='tmux-256color' # have to match `default-terminal` in tmux.conf
+	# but realize that it breaks the theme of nvim
 fi
 
 # # Simplify version of Shell Prompt version compare to the one below
