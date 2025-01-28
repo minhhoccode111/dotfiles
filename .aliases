@@ -24,11 +24,12 @@ alias cdv="cd ~/.config/nvim"
 alias cdf="cd ~/dotfiles"
 alias cdw="cd ~/web"
 alias cdl="cd ~/learn"
+alias cdswap="cd ~/.local/state/nvim/swap/"
 
 # better default
 alias mkdir="mkdir -p"
 alias mv="mv -i"
-alias df="df -h" # filesystem disk space usage
+alias df="df -h"
 alias nv="nvim"
 alias v="nvim"
 alias t="tmux"
