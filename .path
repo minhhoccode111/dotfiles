@@ -10,6 +10,9 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH=$BUN_INSTALL/bin:$PATH
 
 # Go
+export GOROOT=/usr/local/go
+export GOROOTBIN=/usr/local/go/bin
+export PATH=$PATH:$GOROOTBIN
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOBIN
