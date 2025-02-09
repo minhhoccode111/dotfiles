@@ -1,8 +1,6 @@
 [general]
 import = [
     # theme repo: https://github.com/alacritty/alacritty-theme
-    # "~/.config/alacritty/themes/themes/catppuccin_mocha.toml"
-
     # copy the theme file content and place at root with alacritty.toml instead
     # of hardcoded like above, help change theme local easier
     "~/.config/alacritty/current.toml"
