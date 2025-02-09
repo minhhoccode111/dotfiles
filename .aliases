@@ -37,7 +37,7 @@ alias t="tmux"
 alias z="lazygit"
 alias zz="lazydocker"
 alias y="yazi"
-alias fd=fdfind # fd on ubuntu is fdfind
+# alias fd=fdfind # fd on ubuntu is fdfind
 # alias gcc="gcc -lcs50" # auto include CS50 library
 
 # basic
@@ -46,10 +46,13 @@ alias c="clear"
 alias l="ls -Ghal --color=auto"
 alias off="poweroff"
 # update system packages (or pacman -Syu)
-alias asd="sudo nala update && sudo nala upgrade -y && flatpak update && bun upgrade --stable"
+# alias asd="sudo nala update && sudo nala upgrade -y && flatpak update && bun upgrade --stable"
 alias sni="sudo nala install -y"
 alias snr="sudo nala remove -y"
 alias snl="sudo nala list --upgradable"
+alias asd="sudo pacman -Syu && flatpak update && bun upgrade --stable"
+alias spi="sudo pacman -S"
+alias spr="sudo pacman -R"
 
 # FVM, Flutter, and Dark related
 # activate FVM with:
