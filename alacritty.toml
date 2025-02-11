@@ -1,4 +1,4 @@
-# [general]
+[general]
 import = [
     # theme repo: https://github.com/alacritty/alacritty-theme
     # "~/.config/alacritty/themes/themes/catppuccin_mocha.toml"

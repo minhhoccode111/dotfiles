@@ -25,7 +25,10 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 # .NET
 export DOTNET_ROOT=$HOME/.dotnet
 export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
-# export ASPNETCORE_ENVIRONMENT=Development
+# required for nvim debugger to work properly
+export ASPNETCORE_ENVIRONMENT=Development
+# opt-out dotnet data collection
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 # Add .NET Core SDK tools
 export PATH="$PATH:/opt/mssql-tools18/bin"
