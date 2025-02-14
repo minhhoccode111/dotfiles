@@ -2,10 +2,10 @@
 """""""""""""""""""""""""""""""""""SETTINGS""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Use the Solarized Dark theme
-set background=dark
-colorscheme solarized
-let g:solarized_termtrans=1
+" " Use the Solarized Dark theme
+" set background=dark
+" colorscheme solarized
+" let g:solarized_termtrans=1
 
 " Enhance command-line completion
 set wildmenu

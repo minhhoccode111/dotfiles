@@ -61,7 +61,7 @@ xcape -e 'Control_L=Escape'
 [ -f ~/.fzf.bash ] && . ~/.fzf.bash                                           # fzf
 [ -f ~/shell/exercism_completion.bash ] && . ~/shell/exercism_completion.bash # exercism
 [ -f ~/shell/flutter_completion.bash ] && . ~/shell/flutter_completion.bash   # flutter
-[ -f ~/shell/ghostty.bash ] && . ~/shell/ghostty.bash   # ghostty
+[ -f ~/shell/ghostty.bash ] && . ~/shell/ghostty.bash                         # ghostty
 
 ## [Completion]
 ## Completion scripts setup. Remove the following line to uninstall

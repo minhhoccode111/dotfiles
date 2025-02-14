@@ -21,4 +21,3 @@ for file in *.js; do
 done
 
 echo "File renaming completed."
-
