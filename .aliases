@@ -39,7 +39,7 @@ alias fd=fdfind # fd on ubuntu is fdfind
 # alias gcc="gcc -lcs50" # auto include CS50 library
 
 # basic
-alias s='source ~/.bash_profile'
+alias s='source ~/dotfiles/bootstrap.sh'
 alias c="clear"
 alias l="ls -Ghal --color=auto"
 alias off="poweroff"
