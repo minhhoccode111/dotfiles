@@ -1,7 +1,20 @@
 #!/usr/bin/env bash
 
+run_ssh_agent() {
+    # Check if ssh-agent is running by looking for the SSH_AGENT_PID
+    if [ -z "$SSH_AGENT_PID" ] || ! kill -0 "$SSH_AGENT_PID" 2>/dev/null; then
+        echo "Starting new ssh-agent..."
+        # Start a new ssh-agent and store the environment variables
+        eval "$(ssh-agent -s)" > /dev/null
+        echo "ssh-agent started successfully with PID: $SSH_AGENT_PID"
+    else
+        echo "ssh-agent is already running with PID: $SSH_AGENT_PID"
+    fi
+}
+
 # use my ssh
 use_my_ssh() {
+	run_ssh_agent
 	# removes all ssh entries from the ssh-agent
 	ssh-add -D
 	# then adds my personal ssh key
@@ -13,6 +26,7 @@ use_my_ssh() {
 
 # use hisoft ssh
 use_hisoft_ssh() {
+	run_ssh_agent
 	# removes all ssh entries from the ssh-agent
 	ssh-add -D
 	# then adds my personal ssh key
