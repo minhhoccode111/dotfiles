@@ -1,9 +1,35 @@
 #!/usr/bin/env bash
 
+# use my ssh
+use_my_ssh() {
+	# removes all ssh entries from the ssh-agent
+	ssh-add -D
+	# then adds my personal ssh key
+	ssh-add ~/.ssh/id_ed25519
+	# config username and email
+	git config --global user.name minhhoccode111
+	git config --global user.email minhhoccode111@gmail.com
+}
+
+# use hisoft ssh
+use_hisoft_ssh() {
+	# removes all ssh entries from the ssh-agent
+	ssh-add -D
+	# then adds my personal ssh key
+	ssh-add ~/.ssh/id_ed25519_hisoft
+	# config username and email
+	git config --global user.name minhdh-hisoft
+	git config --global user.email minhdh@hisoft.vn
+}
+
 # personal git clone
 function gcl() {
 	git clone git@github.com:minhhoccode111/$1.git $2
-	# cd "${2:-$1}" # don't cd to it
+}
+
+# hisoft git clone
+function gclh() {
+	git clone git@hisoft.github.com:HisoftVN/$1.git $2
 }
 
 # Create a new directory and enter it
