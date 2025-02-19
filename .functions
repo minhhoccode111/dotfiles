@@ -1,51 +1,5 @@
 #!/usr/bin/env bash
 
-run_ssh_agent() {
-	# Check if ssh-agent is running by looking for the SSH_AGENT_PID
-	if [ -z "$SSH_AGENT_PID" ] || ! kill -0 "$SSH_AGENT_PID" 2>/dev/null; then
-		echo "Starting new ssh-agent..."
-		# Start a new ssh-agent and store the environment variables
-		eval "$(ssh-agent -s)" >/dev/null
-		echo "ssh-agent started successfully with PID: $SSH_AGENT_PID"
-	else
-		echo "ssh-agent is already running with PID: $SSH_AGENT_PID"
-	fi
-}
-
-# use my ssh
-use_my_ssh() {
-	run_ssh_agent
-	# removes all ssh entries from the ssh-agent
-	ssh-add -D
-	# then adds my personal ssh key
-	ssh-add ~/.ssh/id_ed25519
-	# config username and email
-	git config --global user.name minhhoccode111
-	git config --global user.email minhhoccode111@gmail.com
-}
-
-# use hisoft ssh
-use_hisoft_ssh() {
-	run_ssh_agent
-	# removes all ssh entries from the ssh-agent
-	ssh-add -D
-	# then adds my personal ssh key
-	ssh-add ~/.ssh/id_ed25519_hisoft
-	# config username and email
-	git config --global user.name minhdh-hisoft
-	git config --global user.email minhdh@hisoft.vn
-}
-
-# personal git clone
-function gcl() {
-	git clone git@github.com:minhhoccode111/$1.git $2
-}
-
-# hisoft git clone
-function gclh() {
-	git clone git@hisoft.github.com:HisoftVN/$1.git $2
-}
-
 # Create a new directory and enter it
 function mcd() {
 	mkdir -p "$@" && cd "$_"
