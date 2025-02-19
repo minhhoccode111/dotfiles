@@ -16,14 +16,15 @@ alias 4="cd ../../../.."
 alias -- -="cd -"
 
 # Shortcuts
+alias cdc="cd ~/code"
+alias cdw="cd ~/work"
+alias cdl="cd ~/learn"
+alias cde="cd ~/exercism"
+alias cdf="cd ~/dotfiles"
+alias cdp="cd ~/projects"
 alias cdoc="cd ~/Documents"
 alias cdow="cd ~/Downloads"
-alias cdp="cd ~/projects"
-alias cde="cd ~/exercism"
 alias cdv="cd ~/.config/nvim"
-alias cdf="cd ~/dotfiles"
-alias cdw="cd ~/web"
-alias cdl="cd ~/learn"
 alias cdswap="cd ~/.local/state/nvim/swap/"
 
 # better default
@@ -63,7 +64,7 @@ alias gc="git commit -m"
 alias gr="git restore ."
 alias gr1="git reset HEAD^"
 alias gs="git status"
-alias gf="git fetch"
+alias gf="git fetch --prune"
 alias ga="git add ."
 
 # git related
