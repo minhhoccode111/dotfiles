@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Color definitions
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -9,17 +8,17 @@ NC='\033[0m' # No Color
 
 run-ssh-agent() {
 	if [ -z "$SSH_AGENT_PID" ] || ! kill -0 "$SSH_AGENT_PID" 2>/dev/null; then
-		echo -e "\n${BLUE}Starting new ssh-agent...${NC}"
+		printf "\n${BLUE}Starting new ssh-agent...${NC}\n"
 		eval "$(ssh-agent -s)" >/dev/null
-		echo -e "\n${GREEN}ssh-agent started successfully with PID: $SSH_AGENT_PID${NC}"
+		printf "\n${GREEN}ssh-agent started successfully with PID: %s${NC}\n" "$SSH_AGENT_PID"
 	else
-		echo -e "\n${GREEN}ssh-agent is already running with PID: $SSH_AGENT_PID${NC}"
+		printf "\n${GREEN}ssh-agent is already running with PID: %s${NC}\n" "$SSH_AGENT_PID"
 	fi
 }
 
 use-my-ssh() {
 	run-ssh-agent
-	echo -e "\n${BLUE}Configuring personal GitHub credentials...${NC}"
+	printf "\n${BLUE}Configuring personal GitHub credentials...${NC}\n"
 	ssh-add -D
 	ssh-add ~/.ssh/id_ed25519
 	git config --global user.name minhhoccode111
@@ -28,7 +27,7 @@ use-my-ssh() {
 
 use-hisoft-ssh() {
 	run-ssh-agent
-	echo -e "\n${BLUE}Configuring Hisoft credentials...${NC}"
+	printf "\n${BLUE}Configuring Hisoft credentials...${NC}\n"
 	ssh-add -D
 	ssh-add ~/.ssh/id_ed25519_hisoft
 	git config --global user.name minhdh-hisoft
@@ -38,49 +37,40 @@ use-hisoft-ssh() {
 fetch-dir() {
 	local dir="$1"
 	cd "$dir" || {
-		echo -e "${RED}Failed to change to directory: $dir${NC}"
+		printf "${RED}Failed to change to directory: %s${NC}\n" "$dir"
 		return 1
 	}
-
-	echo -e "\n${YELLOW}Scanning repositories in: $dir${NC}"
-
+	printf "\n${BLUE}Scanning repositories in: %s${NC}\n" "$dir"
 	# Export colors so they're available in the subshell
 	export RED GREEN YELLOW BLUE NC
-
 	find . -maxdepth 2 -type d -name ".git" -exec sh -c '
         repo_path="$(dirname "{}")"
         repo_name="$(basename "$repo_path")"
-        echo -e "\n${BLUE}Fetching: $repo_name${NC}"
+        abs_path="$PWD${repo_path#.}"
+
+        printf "\n${BLUE}Fetching: %s${NC}\n" "$repo_name"
+
         cd "$repo_path" || exit
-
-        # Fetch and capture the output
         fetch_output=$(git fetch --prune 2>&1)
-
-        # Get the current branch
         current_branch=$(git branch --show-current)
-
-        # Check if there are any updates
         git_status=$(git status -uno)
         behind_count=$(echo "$git_status" | grep -o "Your branch is behind.*by [0-9]* commit" | grep -o "[0-9]*")
 
-	# Check if fetch was successful first
         if echo "$fetch_output" | grep -q "Repository not found\|Could not read from remote repository"; then
-            echo -e "${RED}✗ Access Error${NC}"
-        # Then check for behind status
+            printf "${RED}✗ Access Error${NC}\n"
         elif [ -n "$behind_count" ]; then
-            echo -e "${YELLOW}→ Branch '"'"'$current_branch'"'"' is behind by $behind_count commits${NC}"
-            echo -e "${YELLOW}→ Run: cd $repo_path && git pull${NC}"
+            printf "${YELLOW}→ Branch '\''%s'\'' is behind by %s commits${NC}\n" "$current_branch" "$behind_count"
+            printf "${YELLOW}→ Run: cd %s && git pull${NC}\n" "$abs_path"
         else
-            echo -e "${GREEN}✓ Up to date${NC}"
+            printf "${GREEN}✓ Up to date${NC}\n"
         fi
     ' \;
-
-	echo -e "\n${GREEN}Finished checking repositories in: $dir${NC}"
+	printf "\n${GREEN}Finished checking repositories in: %s${NC}\n" "$dir"
 }
 
 fetch-chore() {
 	use-my-ssh
-	echo -e "\n${YELLOW}Fetching chore repositories...${NC}"
+	printf "\n${BLUE}Fetching chore repositories...${NC}\n"
 	cdf && fetch-dir "$(pwd)" # dotfiles dir
 	cdv && fetch-dir "$(pwd)" # nvim dir
 	cdl && fetch-dir "$(pwd)" # learn dir
@@ -88,39 +78,39 @@ fetch-chore() {
 
 fetch-exercism() {
 	use-my-ssh
-	echo -e "\n${YELLOW}Fetching exercism repositories...${NC}"
+	printf "\n${BLUE}Fetching exercism repositories...${NC}\n"
 	fetch-dir ~/exercism
 }
 
 fetch-project() {
 	use-my-ssh
-	echo -e "\n${YELLOW}Fetching project repositories...${NC}"
+	printf "\n${BLUE}Fetching project repositories...${NC}\n"
 	fetch-dir ~/project
 }
 
 fetch-work() {
 	use-hisoft-ssh
-	echo -e "\n${YELLOW}Fetching work repositories...${NC}"
+	printf "\n${BLUE}Fetching work repositories...${NC}\n"
 	fetch-dir ~/work
 }
 
 fetch-all() {
-	echo -e "${BLUE}Starting repository fetch for all accounts...${NC}"
+	printf "${BLUE}Starting repository fetch for all accounts...${NC}\n"
 	fetch-chore
 	fetch-exercism
 	fetch-project
 	fetch-work
-	echo -e "\n${GREEN}All repositories checked!${NC}"
+	printf "\n${GREEN}All repositories checked!${NC}\n"
 	cd ~/ || exit
 }
 
 # Helper functions for cloning
-function gcl() {
-	echo -e "${BLUE}Cloning personal repository: $1${NC}"
+gcl() {
+	printf "${BLUE}Cloning personal repository: %s${NC}\n" "$1"
 	git clone "git@github.com:minhhoccode111/$1.git" "$2"
 }
 
-function gclh() {
-	echo -e "${BLUE}Cloning Hisoft repository: $1${NC}"
+gclh() {
+	printf "${BLUE}Cloning Hisoft repository: %s${NC}\n" "$1"
 	git clone "git@hisoft.github.com:HisoftVN/$1.git" "$2"
 }
