@@ -51,9 +51,28 @@ fetch-dir() {
         printf "\n${BLUE}Fetching: %s${NC}\n" "$repo_name"
 
         cd "$repo_path" || exit
+
+        if ! git diff-index --quiet HEAD --; then
+            printf "${YELLOW}! Uncommitted changes present${NC}\n"
+            printf "${YELLOW}→ Run: cd %s && git commit -am \".\"${NC}\n" "$abs_path"
+        fi
+
+        if [ -n "$(git ls-files --others --exclude-standard)" ]; then
+            printf "${YELLOW}! Untracked files present${NC}\n"
+            printf "${YELLOW}→ Run: cd %s && git push${NC}\n" "$abs_path"
+        fi
+
         fetch_output=$(git fetch --prune 2>&1)
         current_branch=$(git branch --show-current)
         git_status=$(git status -uno)
+
+	unpushed=$(git log @{u}.. --oneline 2>/dev/null)
+        if [ -n "$unpushed" ]; then
+            commit_count=$(echo "$unpushed" | wc -l)
+            printf "${YELLOW}! %d commit(s) not pushed to remote${NC}\n" "$commit_count"
+            printf "${YELLOW}→ Run: cd %s && git push${NC}\n" "$abs_path"
+        fi
+
         behind_count=$(echo "$git_status" | grep -o "Your branch is behind.*by [0-9]* commit" | grep -o "[0-9]*")
 
         if echo "$fetch_output" | grep -q "Repository not found\|Could not read from remote repository"; then
