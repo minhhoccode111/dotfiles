@@ -126,10 +126,10 @@ fetch-all() {
 # Helper functions for cloning
 gcl() {
 	printf "${BLUE}Cloning personal repository: %s${NC}\n" "$1"
-	git clone "git@github.com:minhhoccode111/$1.git" "$2"
+	git clone git@github.com:minhhoccode111/$1.git $2
 }
 
 gclh() {
 	printf "${BLUE}Cloning Hisoft repository: %s${NC}\n" "$1"
-	git clone "git@hisoft.github.com:HisoftVN/$1.git" "$2"
+	git clone git@hisoft.github.com:HisoftVN/$1.git $2
 }
