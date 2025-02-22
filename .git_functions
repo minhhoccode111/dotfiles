@@ -116,9 +116,9 @@ fetch-work() {
 fetch-all() {
 	printf "${BLUE}Starting repository fetch for all accounts...${NC}\n"
 	fetch-chore
-	fetch-exercism
-	fetch-project
 	fetch-work
+	fetch-project
+	fetch-exercism
 	printf "\n${GREEN}All repositories checked!${NC}\n"
 	cd ~/ || exit
 }
