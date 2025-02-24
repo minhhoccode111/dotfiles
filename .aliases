@@ -35,6 +35,7 @@ alias nv="nvim"
 alias v="nvim"
 alias t="tmux"
 alias z="lazygit"
+alias zz="lazydocker"
 alias y="yazi"
 alias fd=fdfind # fd on ubuntu is fdfind
 # alias gcc="gcc -lcs50" # auto include CS50 library
