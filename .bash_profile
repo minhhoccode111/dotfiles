@@ -48,7 +48,7 @@ fi
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # make CapsLock behave like Ctrl:
-setxkbmap -option ctrl:nocaps
+# setxkbmap -option ctrl:nocaps
 # make short-pressed Ctrl behave like Escape:
 xcape -e 'Control_L=Escape'
 # repeat rate on key press: xset r rate [delay] [rate]
