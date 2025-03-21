@@ -161,7 +161,7 @@
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
 [core]
-	editor = nvim
+	editor = vim
 
 	# Use custom `.gitignore` and `.gitattributes`.
 	excludesfile = ~/.gitignore

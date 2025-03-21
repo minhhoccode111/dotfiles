@@ -60,7 +60,12 @@ _source_if_exists ~/.dart-cli-completion/bash-config.bash # Dart
 _source_dir_files "$HOME/shell" "*.bash"                  # Custom shell completions
 complete -C /home/mhc/go/bin/gocomplete go
 
-### Utilities ###
+# make CapsLock behave like Ctrl:
+# setxkbmap -option ctrl:nocaps
+# make short-pressed Ctrl behave like Escape:
+xcape -e 'Control_L=Escape'
+# repeat rate on key press: xset r rate [delay] [rate]
+xset r rate 225 100
 
 # Improved less for non-text files
 [[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
