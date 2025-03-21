@@ -102,9 +102,9 @@ alias gpl='git pull origin $(get_git_branch)'
 alias gplf='git pull origin $(get_git_branch) --rebase --force'
 
 # https://askubuntu.com/questions/62095/how-to-alias-git-to-g-so-that-bash-completion-rules-are-preserved
-alias g='git'
-source /usr/share/bash-completion/completions/git
-__git_complete g __git_main # auto completion for 'g'
+# alias g='git'
+# source /usr/share/bash-completion/completions/git
+# __git_complete g __git_main # auto completion for 'g'
 
 # Makefile related
 alias ma="make all"

@@ -121,7 +121,7 @@ let mapleader = " "
 let maplocalleader = " "
 
 " Enable mouse mode
-set mouse=a
+" set mouse=a
 
 " Don't show the mode
 set noshowmode
