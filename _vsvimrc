@@ -1,0 +1,99 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" BASIC SETTINGS
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Allow backspace in insert mode
+set backspace=indent,eol,start
+
+" Add the g flag to search/replace by default
+set gdefault
+
+" Don't reset cursor to start of line when moving around
+set nostartofline
+
+" Show the (partial) command as it's being typed
+set showcmd
+
+" Make line numbers default
+set number
+
+" Use relative line numbers
+set relativenumber
+
+" Start scrolling three lines before the horizontal window border
+set scrolloff=5
+
+" Always show the status line
+set laststatus=2
+
+" setting clipboard on windows
+set clipboard=unnamed
+
+" Enable searching as you type
+set incsearch
+
+" Set <space> as the leader key
+let mapleader = " "
+let maplocalleader = " "
+
+" Case-insensitive searching UNLESS \C or capital letters in search
+set ignorecase
+set smartcase
+
+" Indentation settings
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+
+" Set highlight on search
+set hlsearch
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" KEY MAPPINGS (Only those supported by VsVim)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Clear search highlight on pressing <Esc>
+nnoremap <Esc> :nohlsearch<CR>
+
+" Enter Normal mode from Insert mode with jj
+inoremap jj <esc>
+
+" Center cursor after moving screen
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" H, K, L for line navigation
+nnoremap H ^
+onoremap H ^
+vnoremap H ^
+
+nnoremap L $
+onoremap L $
+vnoremap L $
+
+nnoremap K %
+
+" Insert new line above and stay in Normal mode
+nnoremap O o<esc>
+
+" Window navigation
+nnoremap <C-h> <C-w><C-h>
+nnoremap <C-l> <C-w><C-l>
+nnoremap <C-j> <C-w><C-j>
+nnoremap <C-k> <C-w><C-k>
+
+" Save file with <C-s>
+inoremap <C-s> <esc>:w<CR>
+nnoremap <C-s> :w<CR>
+
+" Join line below but keep cursor position
+nnoremap J mzJ`z
+
+" Toggle line numbers
+nnoremap <Leader>tn :set number!<CR>
+nnoremap <Leader>tr :set relativenumber!<CR>
+
+" Close window
+nnoremap <Leader>xx :q<CR>
+nnoremap <Leader>xa :qa<CR>

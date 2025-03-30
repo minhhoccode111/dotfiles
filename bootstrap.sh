@@ -30,6 +30,7 @@ function doIt() {
   cp -f .path ~/
   cp -f .tmux.conf ~/
   cp -f .vimrc ~/
+  cp -f _vsvimrc ~/
   cp -f .wgetrc ~/
 
 	# alacritty config file
