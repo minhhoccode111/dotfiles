@@ -40,14 +40,14 @@ case ":$PATH:" in
 *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
-# flutter
-export PATH=$PATH:$HOME/app/flutter/bin
+# flutter # fvm
+# export PATH=$PATH:$HOME/app/flutter/bin # turn off and only use fvm to manage flutter
+export PATH=$PATH:$HOME/app/fvm
+export PATH=$PATH:$HOME/.pub-cache/bin
+export PATH=$PATH:$HOME/fvm/default/bin
 
 # zig
 export PATH=$PATH:$HOME/app/zig
-
-# fvm
-export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 # android
 export ANDROID_HOME=$HOME/Android/Sdk
