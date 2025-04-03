@@ -1,5 +1,16 @@
 #!/usr/bin/env bash
 
+# create a new tmux session with 4 default windows: vim, term(inal), git, apis
+# at current working directory, the second parameter is the name of the session
+function pj() {
+	tmux new-session -d -s "$1" -n vim \; \
+		new-window -n term 'bash' \; \
+		new-window -n git 'bash' \; \
+		new-window -n apis -c ~/project/apis-testing/ 'bash' \; \
+		select-window -t 2 \; \
+		attach
+}
+
 # Create a new directory and enter it
 function mcd() {
 	mkdir -p "$@" && cd "$_"
