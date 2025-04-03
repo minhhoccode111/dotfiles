@@ -1,6 +1,3 @@
-# Add `~/bin` to the `$PATH`
-export PATH="$HOME/bin:$PATH"
-
 # Shell settings, source files + completions, run apps
 
 # If not running interactively, don't do anything
@@ -54,14 +51,17 @@ fi
 setxkbmap -option ctrl:nocaps
 # make short-pressed Ctrl behave like Escape:
 xcape -e 'Control_L=Escape'
+# repeat rate on key press: xset r rate [delay] [rate]
+xset r rate 225 100
 
 # source auto completions
-[ -f ~/.bash_completion/alacritty ] && . ~/.bash_completion/alacritty         # alacritty
-[ -f ~/.cargo/env ] && . ~/.cargo/env                                         # rustup
-[ -f ~/.fzf.bash ] && . ~/.fzf.bash                                           # fzf
-[ -f ~/shell/exercism_completion.bash ] && . ~/shell/exercism_completion.bash # exercism
-[ -f ~/shell/flutter_completion.bash ] && . ~/shell/flutter_completion.bash   # flutter
-[ -f ~/shell/ghostty.bash ] && . ~/shell/ghostty.bash                         # ghostty
+[ -f ~/.cargo/env ] && . ~/.cargo/env                     # rustup
+[ -f ~/.fzf.bash ] && . ~/.fzf.bash                       # fzf
+# TODO: write a function to loop through "shell" dir
+[ -f ~/shell/alacritty.bash ] && . ~/shell/alacritty.bash # alacritty
+[ -f ~/shell/exercism.bash ] && . ~/shell/exercism.bash   # exercism
+[ -f ~/shell/flutter.bash ] && . ~/shell/flutter.bash     # flutter
+[ -f ~/shell/ghostty.bash ] && . ~/shell/ghostty.bash     # ghostty
 
 ## [Completion]
 ## Completion scripts setup. Remove the following line to uninstall

@@ -60,5 +60,8 @@ export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin/
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_HOME/emulator
 
+# Add `~/bin` to the `$PATH`, for `~/shell` checkout bash_profile
+export PATH="$HOME/bin:$PATH"
+
 # other
 export PATH=$HOME/.local/bin:$PATH
