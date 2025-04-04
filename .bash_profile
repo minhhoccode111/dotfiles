@@ -1,74 +1,77 @@
-# Shell settings, source files + completions, run apps
+#!/usr/bin/env bash
+# ~/.bash_profile - Interactive shell configuration
 
-# If not running interactively, don't do anything
-# An interactive shell is one where the user interacts directly with it, like a command-line session in a terminal
-# Non-interactive shells are used to run scripts or commands automatically without user interaction
-case $- in
-*i*) ;;
-*) return ;;
-esac
+### Initialization Checks ###
 
-# Load the shell dotfiles, and then some:
-# * ~/.path can be used to extend `$PATH`.
-# * ~/.extra can be used for other settings you don’t want to commit.
-for file in ~/.{path,bash_prompt,exports,aliases,functions,git_functions,extra}; do
-	if [ -f "$file" ] && [ -r "$file" ]; then
+# Exit if not running interactively
+[[ $- != *i* ]] && return
+
+### Shell Options ###
+shopt -s checkwinsize # Update LINES/COLUMNS after each command
+shopt -s nocaseglob   # Case-insensitive pathname expansion
+shopt -s histappend   # Append to history instead of overwriting
+shopt -s cdspell      # Autocorrect typos in 'cd' commands
+
+### Helper Functions ###
+
+# Safe source helper
+_source_if_exists() {
+	local file="$1"
+	if [[ -f "$file" && -r "$file" ]]; then
 		source "$file"
 	else
-		echo "Warning: File '$file' is missing or unreadable."
+		echo "Warning: File '$file' is missing or unreadable." >&2
+		return 1
 	fi
+}
+
+# Source all files in a directory
+_source_dir_files() {
+	local dir="$1" pattern="${2:-*}"
+	if [[ -d "$dir" ]]; then
+		for file in "$dir"/$pattern; do
+			[[ -f "$file" ]] && source "$file"
+		done
+	else
+		echo "Directory not found: $dir" >&2
+		return 1
+	fi
+}
+
+### Main Configuration ###
+
+# Source core dotfiles
+for file in ~/.{path,exports,aliases,functions,git_functions,bash_prompt,extra}; do
+	_source_if_exists "$file"
 done
-unset file
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+### Completion Setup ###
 
-# Case-insensitive globbing (used in pathname expansion)
-shopt -s nocaseglob
-
-# Append to the Bash history file, rather than overwriting it
-shopt -s histappend
-
-# Autocorrect typos in path names when using `cd`
-shopt -s cdspell
-
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
+# System completions
 if ! shopt -oq posix; then
-	if [ -f /usr/share/bash-completion/bash_completion ]; then
-		. /usr/share/bash-completion/bash_completion
-	elif [ -f /etc/bash_completion ]; then
-		. /etc/bash_completion
-	fi
+	_source_if_exists /usr/share/bash-completion/bash_completion ||
+		_source_if_exists /etc/bash_completion
 fi
 
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+# Tool-specific completions
+_source_if_exists ~/.fzf.bash                             # fzf
+_source_if_exists ~/.cargo/env                            # rustup
+_source_if_exists ~/.dart-cli-completion/bash-config.bash # Dart
+_source_dir_files "$HOME/shell" "*.bash"                  # Custom shell completions
 
-# make CapsLock behave like Ctrl:
-setxkbmap -option ctrl:nocaps
-# make short-pressed Ctrl behave like Escape:
-xcape -e 'Control_L=Escape'
-# repeat rate on key press: xset r rate [delay] [rate]
-xset r rate 225 100
+### Utilities ###
 
-# source auto completions
-[ -f ~/.cargo/env ] && . ~/.cargo/env                     # rustup
-[ -f ~/.fzf.bash ] && . ~/.fzf.bash                       # fzf
-# TODO: write a function to loop through "shell" dir
-[ -f ~/shell/alacritty.bash ] && . ~/shell/alacritty.bash # alacritty
-[ -f ~/shell/exercism.bash ] && . ~/shell/exercism.bash   # exercism
-[ -f ~/shell/flutter.bash ] && . ~/shell/flutter.bash     # flutter
-[ -f ~/shell/ghostty.bash ] && . ~/shell/ghostty.bash     # ghostty
+# Improved less for non-text files
+[[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
 
-## [Completion]
-## Completion scripts setup. Remove the following line to uninstall
-[ -f /home/mhc/.dart-cli-completion/bash-config.bash ] && . /home/mhc/.dart-cli-completion/bash-config.bash || true
-## [/Completion]
+### Keyboard Configuration ###
 
-# Shell keybind widgets: Wikiman can be launched using a shell key binding (default: Ctrl+F). Current command line buffer will be used as a search query
-# BUG: turn off because can't deal with fzf dependency downgrade
-# I want to use fzf latest but wikiman keep override with debian version
-# source /usr/share/wikiman/widgets/widget.bash
+# Only apply keyboard settings in graphical environment
+if [[ -n "$DISPLAY" ]]; then
+	setxkbmap -option ctrl:nocaps # CapsLock as Ctrl
+	xcape -e 'Control_L=Escape'   # short Ctrl as Escape
+	xset r rate 225 100           # Keyboard repeat rate
+fi
+
+### Cleanup ###
+unset file
