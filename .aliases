@@ -16,6 +16,7 @@ alias 4="cd ../../../.."
 alias -- -="cd -"
 
 # Shortcuts
+alias cda="cd ~/app"
 alias cdc="cd ~/code"
 alias cdw="cd ~/work"
 alias cdl="cd ~/learn"
@@ -41,7 +42,7 @@ alias fd=fdfind # fd on ubuntu is fdfind
 # alias gcc="gcc -lcs50" # auto include CS50 library
 
 # basic
-alias s='source ~/dotfiles/bootstrap.sh -f'
+alias so='source ~/dotfiles/bootstrap.sh -f'
 alias c="clear"
 alias l="ls -Ghal --color=auto"
 alias off="poweroff"
@@ -56,14 +57,19 @@ alias snl="sudo nala list --upgradable"
 # dart pub global activate fvm
 alias d="fvm dart"
 alias f="fvm flutter"
+alias fr="f run"
+alias fdo="f doctor -v"
+alias ep="f emulator --launch phone"
+alias es="f emulator --launch small"
+alias em="f emulator --launch medium"
+alias el="f emulator --launch large"
+alias et="f emulator --launch tablet"
 # ~/shell/flutter_completion.bash
 complete -F __flutter_completion f
 
 # NOTE: git related
 alias log="git log --all --oneline --graph"
 alias gc="git commit -m"
-alias gr="git restore ."
-alias gr1="git reset HEAD^"
 alias gs="git status"
 alias gf="git fetch --prune"
 alias ga="git add ."
