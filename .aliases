@@ -67,6 +67,10 @@ alias et="f emulator --launch tablet"
 # ~/shell/flutter_completion.bash
 complete -F __flutter_completion f
 
+# Golang related
+# go test will output colors for PASS, FAIL and RUN
+alias gt="go test -v --bench . --benchmem | sed ''/PASS/s//$(printf "\033[32mPASS\033[0m")/'' | sed ''/FAIL/s//$(printf "\033[31mFAIL\033[0m")/'' | sed ''/RUN/s//$(printf "\033[33mRUN\033[0m")/''"
+
 # NOTE: git related
 alias log="git log --all --oneline --graph"
 alias gc="git commit -m"
