@@ -1,6 +1,46 @@
 #!/usr/bin/env bash
 
-# create a new tmux session with 4 default windows: vim, term(inal), git, apis
+# Create a source.http from swagger.json file to use with rest.nvim
+function tohttp() {
+	local input_file="${1:-swagger.json}"
+	local output_file="${2:-source.http}"
+	if [[ ! -f "$input_file" ]]; then
+		echo "Error: Input file '$input_file' not found."
+		return 1
+	fi
+
+	# Initialize the output file with standard metadata
+	echo "@api = " >"$output_file"
+	echo "@token = " >>"$output_file"
+
+	# Extract all unique parameters from paths
+	unique_params=$(cat "$input_file" | jq -r '.paths | to_entries[] | .key | select(contains("{")) | capture("\\{(?<param>[^}]+)\\}") | .param' | sort -u)
+
+	# Add each unique parameter as a variable at the top
+	for param in $unique_params; do
+		echo "@$param = " >>"$output_file"
+	done
+
+	# Add a blank line after the variables
+	echo "" >>"$output_file"
+
+	# Create the endpoints in a temporary file
+	cat "$input_file" | jq -r '
+        .paths | to_entries[] | .key as $path | .value | to_entries[] |
+        ($path
+            | sub("^/api/v1"; "{api}")
+            | sub("^/api"; "{api}")) as $normalized_path |
+        "###\n\(.key | ascii_upcase) \($normalized_path)\nAuthorization: Bearer {token}\n"
+    ' >"$output_file.tmp"
+
+	# Transform parameters and append to the output file
+	sed -E 's/\{([^}]+)\}/\{\{\1\}\}/g' "$output_file.tmp" >>"$output_file"
+
+	rm "$output_file.tmp"
+	echo "Successfully converted $input_file to $output_file with $(grep -c '###' "$output_file") endpoints."
+}
+
+# Create a new tmux session with 4 default windows: vim, term(inal), git, apis
 # at current working directory, the second parameter is the name of the session
 function pj() {
 	tmux new-session -d -s "$1" -n vim \; \
