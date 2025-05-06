@@ -102,6 +102,12 @@ alias g='git'
 source /usr/share/bash-completion/completions/git
 __git_complete g __git_main # auto completion for 'g'
 
+# Makefile related
+alias ma="make all"
+alias mr="make run"
+alias mb="make build"
+alias mc="make clean"
+
 # npm related
 alias nsv="npm run server"
 alias nw="npm run watch"
