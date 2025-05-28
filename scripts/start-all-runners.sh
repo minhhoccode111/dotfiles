@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Problem: the private server will be used as self-hosted runner itself
+# Problem: the private server will be used as self-hosted runner
 # So I create a ~/runners/ on the server to place all those runners for multiple projects
-# and I write this script to  quickly check (if not running) and start all of them
+# and I write this script to quickly check (if not running) and start all of them
 
 # Function to check if a runner is already running
 is_runner_running() {
@@ -37,8 +37,11 @@ start_runner() {
 echo "Checking and starting GitHub Actions runners..."
 echo "=============================================="
 
-# Find all run.sh scripts at maxdepth 2
-find . -maxdepth 2 -name "run.sh" -type f | while read -r script_path; do
+# Store the original directory
+ORIGINAL_DIR=$(pwd)
+
+# Find all run.sh scripts at maxdepth 2 and process them
+while IFS= read -r -d '' script_path; do
     runner_dir=$(dirname "$script_path")
     runner_name=$(basename "$runner_dir")
 
@@ -52,7 +55,10 @@ find . -maxdepth 2 -name "run.sh" -type f | while read -r script_path; do
         echo "  Status: Not running - STARTING"
         start_runner "$script_path"
     fi
-done
+
+    # Return to original directory after each runner
+    cd "$ORIGINAL_DIR"
+done < <(find . -maxdepth 2 -name "run.sh" -type f -print0)
 
 echo
 echo "=============================================="
