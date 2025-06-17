@@ -38,7 +38,11 @@ alias t="tmux"
 alias z="lazygit"
 alias zz="lazydocker"
 alias y="yazi"
+alias ve="nvim ~/.extra"
+alias bat="batcat" # bat on ubuntu is batcat
 alias fd=fdfind # fd on ubuntu is fdfind
+alias bundletool="~/app/bundletool.jar"
+alias cu="~/app/Cursor-*-x86_64.AppImage"
 # alias gcc="gcc -lcs50" # auto include CS50 library
 
 # basic
@@ -51,6 +55,10 @@ alias asd="sudo nala update && sudo nala upgrade -y && flatpak update && bun upg
 alias sni="sudo nala install -y"
 alias snr="sudo nala remove -y"
 alias snl="sudo nala list --upgradable"
+
+# Golang related
+# go test will output colors for PASS, FAIL and RUN
+alias gt="go test -v --bench . --benchmem | sed ''/PASS/s//$(printf "\033[32mPASS\033[0m")/'' | sed ''/FAIL/s//$(printf "\033[31mFAIL\033[0m")/'' | sed ''/RUN/s//$(printf "\033[33mRUN\033[0m")/''"
 
 # FVM, Flutter, and Dark related
 # activate FVM with:
@@ -66,10 +74,6 @@ alias el="f emulator --launch large"
 alias et="f emulator --launch tablet"
 # ~/shell/flutter_completion.bash
 complete -F __flutter_completion f
-
-# Golang related
-# go test will output colors for PASS, FAIL and RUN
-alias gt="go test -v --bench . --benchmem | sed ''/PASS/s//$(printf "\033[32mPASS\033[0m")/'' | sed ''/FAIL/s//$(printf "\033[31mFAIL\033[0m")/'' | sed ''/RUN/s//$(printf "\033[33mRUN\033[0m")/''"
 
 # NOTE: git related
 alias log="git log --all --oneline --graph"
@@ -107,6 +111,7 @@ alias ma="make all"
 alias mr="make run"
 alias mb="make build"
 alias mc="make clean"
+alias mt="make test"
 
 # npm related
 alias nsv="npm run server"

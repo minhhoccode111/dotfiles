@@ -41,7 +41,7 @@ _source_dir_files() {
 ### Main Configuration ###
 
 # Source core dotfiles
-for file in ~/.{path,exports,aliases,functions,git_functions,bash_prompt,extra}; do
+for file in ~/.{path,envvars,aliases,functions,git_functions,bash_prompt,extra}; do
 	_source_if_exists "$file"
 done
 
@@ -58,11 +58,15 @@ _source_if_exists ~/.fzf.bash                             # fzf
 _source_if_exists ~/.cargo/env                            # rustup
 _source_if_exists ~/.dart-cli-completion/bash-config.bash # Dart
 _source_dir_files "$HOME/shell" "*.bash"                  # Custom shell completions
+complete -C /home/mhc/go/bin/gocomplete go
 
 ### Utilities ###
 
 # Improved less for non-text files
 [[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# shell integration of fzf
+eval "$(fzf --bash)"
 
 ### Keyboard Configuration ###
 

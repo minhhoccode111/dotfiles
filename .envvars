@@ -39,3 +39,9 @@ export MANPAGER='nvim +Man!'
 
 # nvim theme, can be overrided by the one in .extra
 export NVIM_THEME=catppuccin-mocha
+
+# ibus vietnamese typing
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
+

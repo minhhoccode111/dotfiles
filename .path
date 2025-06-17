@@ -32,6 +32,8 @@ export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
 export ASPNETCORE_ENVIRONMENT=Development
 # opt-out dotnet data collection
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
+# to run project Task Management BE
+export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=0
 
 # Add .NET Core SDK tools
 export PATH="$PATH:/opt/mssql-tools18/bin"
@@ -59,6 +61,15 @@ export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/
 export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin/
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_HOME/emulator
+
+# Gradle for building android related stuffs
+# version 8.10.2
+export PATH=$PATH:/opt/gradle/bin
+
+# Ruby
+# export PATH="$HOME/.rubies/ruby-2.7.8/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init - bash)"
 
 # Add `~/bin` to the `$PATH`, for `~/shell` checkout bash_profile
 export PATH="$HOME/bin:$PATH"
