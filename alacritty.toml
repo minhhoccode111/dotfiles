@@ -64,6 +64,9 @@ startup_mode = "Maximized"
     # because of neovim won't be transparent all at
 opacity = 0.92
 
+[colors]
+    # make nvim also transparent
+transparent_background_colors = true
 
 # [window.dimensions]
     # Window dimensions (changes require restart)
