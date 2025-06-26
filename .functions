@@ -1,7 +1,97 @@
 #!/usr/bin/env bash
 
+# Function to extract APK from AAB using bundletool
+# Usage: aabtoapk <input_aab_name> <output_name>
+# Example: aabtoapk app-release lms-prod-2025-06-20
+function aabtoapk() {
+    # Check if correct number of arguments provided
+    if [ $# -ne 2 ]; then
+        echo "Usage: aabtoapk <input_aab_name> <output_name>"
+        echo "Example: aabtoapk app-release output"
+        return 1
+    fi
+
+    local input_name="$1"
+    local output_name="$2"
+    local input_aab="${input_name}.aab"
+    local output_apks="${output_name}.apks"
+    local bundletool_path="~/app/bundletool.jar"
+
+    # Check if input AAB file exists
+    if [ ! -f "$input_aab" ]; then
+        echo "Error: Input file '$input_aab' not found!"
+        return 1
+    fi
+
+    # Check if bundletool exists
+    if [ ! -f ~/app/bundletool.jar ]; then
+        echo "Error: bundletool.jar not found at ~/app/bundletool.jar"
+        echo "Please download it first using:"
+        echo "wget https://github.com/google/bundletool/releases/download/1.15.6/bundletool-all-1.15.6.jar -O ~/app/bundletool.jar"
+        return 1
+    fi
+
+    echo "Converting $input_aab to APK..."
+
+    # Build APKs from AAB
+    echo "Step 1: Building APKs from AAB..."
+    java -jar ~/app/bundletool.jar build-apks \
+        --bundle="$input_aab" \
+        --output="$output_apks" \
+        --ks=keystoreMoodle.jks \
+        --ks-key-alias=keystoreMoodle \
+        --ks-pass=pass:123456 \
+        --key-pass=pass:123456 \
+        --mode=universal
+
+    if [ $? -ne 0 ]; then
+        echo "Error: Failed to build APKs from AAB"
+        return 1
+    fi
+
+    # Extract APKs and clean up
+    echo "Step 2: Extracting APKs..."
+    unzip "$output_apks" -d "$output_name"
+    rm "$output_apks" "$output_name/toc.pb"
+
+    if [ $? -ne 0 ]; then
+        echo "Error: Failed to extract APKs"
+        return 1
+    fi
+
+    # Rename universal.apk to match output name
+    if [ -f "${output_name}/universal.apk" ]; then
+        mv "${output_name}/universal.apk" "${output_name}/${output_name}.apk"
+        echo "Success! APK created at: ${output_name}/${output_name}.apk"
+        echo ""
+        echo "To install on device (with USB debugging enabled):"
+        echo "adb install ${output_name}/${output_name}.apk"
+    else
+        echo "Warning: universal.apk not found in extracted files"
+        echo "Available files in ${output_name}/${output_name}:"
+        ls -la "$output_name"
+    fi
+
+    # auto install the apk to attached device
+    if [ $? -eq 0 ]; then
+        echo ""
+        read -p "Do you want to install the APK on connected device? (y/n): " -n 1 -r
+        echo
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            echo "Installing APK on device..."
+            adb install "${output_name}/${output_name}.apk"
+
+            if [ $? -eq 0 ]; then
+                echo "APK installed successfully!"
+            else
+                echo "Failed to install APK. Make sure USB debugging is enabled and device is connected."
+            fi
+        fi
+    fi
+}
+
 # Create a source.http from swagger.json file to use with rest.nvim
-function tohttp() {
+function swaggertohttp() {
 	local input_file="${1:-swagger.json}"
 	local output_file="${2:-source.http}"
 	if [[ ! -f "$input_file" ]]; then
