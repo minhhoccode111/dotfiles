@@ -7,13 +7,13 @@ function aabtoapk() {
     # Check if correct number of arguments provided
     if [ $# -ne 2 ]; then
         echo "Usage: aabtoapk <input_aab_name> <output_name>"
-        echo "Example: aabtoapk app-release output"
+        echo "Example: aabtoapk app-release.aab output"
         return 1
     fi
 
     local input_name="$1"
     local output_name="$2"
-    local input_aab="${input_name}.aab"
+    local input_aab="${input_name}"
     local output_apks="${output_name}.apks"
     local bundletool_path="~/app/bundletool.jar"
 
