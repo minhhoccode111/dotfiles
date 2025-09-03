@@ -136,7 +136,7 @@ function pj() {
 	tmux new-session -d -s "$1" -n vim \; \
 		new-window -n term 'bash' \; \
 		new-window -n git 'bash' \; \
-		new-window -n apis -c ~/project/apis-testing/ 'bash' \; \
+		new-window -n apis -c ~/projects/apis-testing/ 'bash' \; \
 		select-window -t 2 \; \
 		attach
 }
