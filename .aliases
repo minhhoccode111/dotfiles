@@ -43,7 +43,6 @@ alias vg="nvim ~/global.json"
 alias bat="batcat" # bat on ubuntu is batcat
 alias fd=fdfind # fd on ubuntu is fdfind
 alias bundletool="~/app/bundletool.jar"
-alias cu="~/app/Cursor-*-x86_64.AppImage --no-sandbox > /dev/null 2>&1"
 # alias gcc="gcc -lcs50" # auto include CS50 library
 
 # basic
