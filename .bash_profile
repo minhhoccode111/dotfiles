@@ -75,6 +75,7 @@ if [[ -n "$DISPLAY" ]]; then
 	setxkbmap -option ctrl:nocaps # CapsLock as Ctrl
 	xcape -e 'Control_L=Escape'   # short Ctrl as Escape
 	xset r rate 225 100           # Keyboard repeat rate
+	set -o vi                     # Vim motion in bash termial
 fi
 
 ### Cleanup ###
