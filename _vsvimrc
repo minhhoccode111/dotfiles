@@ -1,5 +1,5 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" BASIC SETTINGS
+" SETTINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Allow backspace in insert mode
@@ -21,7 +21,7 @@ set number
 set relativenumber
 
 " Start scrolling three lines before the horizontal window border
-set scrolloff=5
+set scrolloff=3
 
 " Always show the status line
 set laststatus=2
@@ -31,10 +31,6 @@ set clipboard=unnamed
 
 " Enable searching as you type
 set incsearch
-
-" Set <space> as the leader key
-let mapleader = " "
-let maplocalleader = " "
 
 " Case-insensitive searching UNLESS \C or capital letters in search
 set ignorecase
@@ -50,8 +46,12 @@ set expandtab
 set hlsearch
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" KEY MAPPINGS (Only those supported by VsVim)
+" MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Set <space> as the leader key
+let mapleader = "\<Space>"
+let maplocalleader = "\<Space>"
 
 " Clear search highlight on pressing <Esc>
 nnoremap <Esc> :nohlsearch<CR>
@@ -73,6 +73,8 @@ onoremap L $
 vnoremap L $
 
 nnoremap K %
+onoremap K %
+vnoremap K %
 
 " Insert new line above and stay in Normal mode
 nnoremap O o<esc>
@@ -96,4 +98,77 @@ nnoremap <Leader>tr :set relativenumber!<CR>
 
 " Close window
 nnoremap <Leader>xx :q<CR>
-nnoremap <Leader>xa :qa<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" VISUAL STUDIO MAPPINGS
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" find file in Visual Studio
+nnoremap <leader>ff :vsc Edit.GoToFile<CR>
+
+" LSP-like navigation
+nnoremap <leader>ld :vsc Edit.GoToDefinition<CR>
+nnoremap <leader>li :vsc Edit.GoToImplementation<CR>
+nnoremap <leader>lr :vsc Edit.FindAllReferences<CR>
+nnoremap <leader>lk :vsc Edit.QuickInfo<CR>
+
+" rename LSP
+nnoremap <leader>rn :vsc Refactor.Rename<CR>
+nnoremap <leader>rr :vsc Edit.ReplaceInFiles<CR>
+
+" Tab navigation
+nnoremap <C-o> :vsc Window.NextDocumentWindow<CR>
+nnoremap <C-i> :vsc Window.PreviousDocumentWindow<CR>
+
+" Jump list navigation
+" set in tools > options > environment > keyboard instead
+" change 'Alt - P' and 'Alt - N' to View.NavigateBackward and View.NavigateForward instead
+" nnoremap <M-p> :vsc View.NavigateBackward<CR>
+" nnoremap <M-n> :vsc View.NavigateForward<CR>
+
+" Debugger controls
+nnoremap <leader>db :vsc Debug.ToggleBreakpoint<CR>
+nnoremap <leader>dB :vsc Debug.NewConditionalBreakpoint<CR>
+nnoremap <leader>dc :vsc Debug.RunToCursor<CR>
+nnoremap <leader>ds :vsc Debug.Start<CR>
+nnoremap <leader>di :vsc Debug.QuickWatch<CR>
+
+" run without debugger
+nnoremap <leader><CR> :vsc Debug.StartWithoutDebugging<CR>
+
+" jump to next/previous diagnostic
+" can't do inside Visual Studio, only ErrorList usable
+" nnoremap <leader>j :vsc View.NextError<CR>
+" nnoremap <leader>k :vsc View.PreviousError<CR>
+
+" move lines up/down
+" vnoremap <A-j> :vsc Edit.LineDown<CR>
+" nnoremap <A-j> :vsc Edit.LineDown<CR>
+" vnoremap <A-k> :vsc Edit.LineUp<CR>
+" nnoremap <A-k> :vsc Edit.LineUp<CR>
+
+" toggle word wrap
+nnoremap <leader>tw :vsc Edit.ToggleWordWrap<CR>
+
+" toggle diagnostics window
+" close with <C-x> set in Tools > Options > Environment > Keyboard and find
+" command Window.CloseToolWindow
+nnoremap <leader>q :vsc View.ErrorList<CR>
+
+" toggle error list
+" nnoremap <leader><leader> :vsc View.ErrorList<CR>
+
+" Select all with <C-a>
+nnoremap <C-a> :vsc Edit.SelectAll<CR>
+inoremap <C-a> <Esc>:vsc Edit.SelectAll<CR>
+
+" toggle solution explorer
+nnoremap <leader>nl :vsc View.SolutionExplorer<CR>
+
+" close all opened buffers
+" nnoremap <Leader>xa :qa<CR>
+nnoremap <leader>xa :vsc File.CloseAllDocuments<CR>
+
+" show current file in solution explorer
+" turn off preview tab: Tools > Options > Environment > Tabs and Windows
+nnoremap <leader>nc :vsc SolutionExplorer.SyncWithActiveDocument<CR>
