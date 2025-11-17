@@ -6,8 +6,16 @@
 " Find more examples here: https://jb.gg/share-ideavimrc
 "" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
 
-" Source your .vimrc
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" .ideavimrc for IdeaVim in Rider
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Source your .vimrc (contains most settings and basic mappings)
 source ~/.vimrc
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" IDEAVIM PLUGINS
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
 " Highlight copied text
@@ -15,3 +23,81 @@ Plug 'machakann/vim-highlightedyank'
 " Commentary plugin
 Plug 'tpope/vim-commentary'
 " and more
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" RIDER-SPECIFIC SETTINGS
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" IdeaVim uses 'ideajoin' for smarter joining
+set ideajoin
+
+" Use system clipboard (similar to vsvimrc's clipboard=unnamed)
+set clipboard+=unnamed
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" RIDER IDE ACTION MAPPINGS
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Find file in Rider
+nnoremap <leader>ff :action GotoFile<CR>
+
+" LSP-like navigation
+nnoremap <leader>ld :action GotoDeclaration<CR>
+nnoremap <leader>li :action GotoImplementation<CR>
+nnoremap <leader>lr :action FindUsages<CR>
+nnoremap <leader>lk :action QuickJavaDoc<CR>
+
+" Rename LSP
+nnoremap <leader>rn :action RenameElement<CR>
+nnoremap <leader>rr :action ReplaceInPath<CR>
+
+" Tab navigation
+nnoremap <C-o> :action NextTab<CR>
+nnoremap <C-i> :action PreviousTab<CR>
+
+" Jump list navigation
+nnoremap <M-p> :action Back<CR>
+nnoremap <M-n> :action Forward<CR>
+
+" Debugger controls
+nnoremap <leader>db :action ToggleLineBreakpoint<CR>
+nnoremap <leader>dB :action ToggleBreakpointEnabled<CR>
+nnoremap <leader>dc :action RunToCursor<CR>
+nnoremap <leader>ds :action Debug<CR>
+nnoremap <leader>di :action QuickEvaluateExpression<CR>
+
+" Run without debugger
+nnoremap <leader><CR> :action Run<CR>
+
+" Jump to next/previous error
+nnoremap <leader>j :action GotoNextError<CR>
+nnoremap <leader>k :action GotoPreviousError<CR>
+
+" Move lines up/down (IdeaVim supports this natively via source .vimrc)
+" But if you want IDE-aware movement:
+" vnoremap <M-j> :action MoveLineDown<CR>
+" vnoremap <M-k> :action MoveLineUp<CR>
+" nnoremap <M-j> :action MoveLineDown<CR>
+" nnoremap <M-k> :action MoveLineUp<CR>
+
+" Toggle word wrap
+nnoremap <leader>tw :action EditorToggleUseSoftWraps<CR>
+
+" Toggle problems/errors window
+nnoremap <leader>q :action ActivateProblemsViewToolWindow<CR>
+
+" Select all with <C-a> (already in .vimrc, but using IDE action for consistency)
+nnoremap <C-a> :action $SelectAll<CR>
+inoremap <C-a> <Esc>:action $SelectAll<CR>
+
+" Toggle solution explorer (Project tool window in Rider)
+nnoremap <leader>nl :action ActivateProjectToolWindow<CR>
+
+" Close all opened buffers
+nnoremap <leader>xa :action CloseAllEditors<CR>
+
+" Close all other buffers except current
+nnoremap <leader>xo :action CloseAllEditorsButActive<CR>
+
+" Show current file in solution explorer
+nnoremap <leader>nc :action SelectInProjectView<CR>
