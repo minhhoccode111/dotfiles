@@ -134,10 +134,11 @@ function swaggertohttp() {
 # at current working directory, the second parameter is the name of the session
 function pj() {
 	tmux new-session -d -s "$1" -n vim \; \
-		new-window -n term 'bash' \; \
+		new-window -n ter 'bash' \; \
 		new-window -n git 'bash' \; \
-		new-window -n apis -c ~/projects/apis-testing/ 'bash' \; \
-		select-window -t 2 \; \
+		new-window -n ai 'bash' \; \
+		new-window -n api -c ~/projects/apis-testing/ 'bash' \; \
+		select-window -t 3 \; \
 		attach
 }
 
