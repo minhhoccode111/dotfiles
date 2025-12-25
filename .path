@@ -2,13 +2,6 @@
 
 # Update $PATH for things I installed
 
-# cs50 library
-# export LD_LIBRARY_PATH=/usr/local/lib
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH=$BUN_INSTALL/bin:$PATH
-
 # Go
 export GOROOT=/usr/local/go
 export GOROOTBIN=/usr/local/go/bin
@@ -17,59 +10,8 @@ export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOBIN
 
-# nvm
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-
-# yarn binary
-export PATH=$HOME/.yarn/bin:$PATH
-
-# .NET
-export DOTNET_ROOT=$HOME/.dotnet
-export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
-# required for nvim debugger to work properly
-export ASPNETCORE_ENVIRONMENT=Development
-# opt-out dotnet data collection
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
-# to run project Task Management BE
-export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=0
-
 # Add .NET Core SDK tools
 export PATH="$PATH:/opt/mssql-tools18/bin"
-
-# pnpm
-export PNPM_HOME="/home/mhc/.local/share/pnpm"
-case ":$PATH:" in
-*":$PNPM_HOME:"*) ;;
-*) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-
-# flutter # fvm
-# export PATH=$PATH:$HOME/app/flutter/bin # turn off and only use fvm to manage flutter
-export PATH=$PATH:$HOME/app/fvm
-export PATH=$PATH:$HOME/.pub-cache/bin
-export PATH=$PATH:$HOME/fvm/default/bin
-
-# zig
-export PATH=$PATH:$HOME/app/zig
-
-# android
-export ANDROID_HOME=$HOME/Android/Sdk
-export ANDROID_SDK_ROOT=$ANDROID_HOME
-export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/
-export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin/
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH=$PATH:$ANDROID_HOME/emulator
-
-# Gradle for building android related stuffs
-# version 8.10.2
-export PATH=$PATH:/opt/gradle/bin
-
-# Ruby
-# export PATH="$HOME/.rubies/ruby-2.7.8/bin:$PATH"
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init - bash)"
 
 # Add `~/bin` to the `$PATH`, for `~/shell` checkout bash_profile
 export PATH="$HOME/bin:$PATH"

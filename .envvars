@@ -32,16 +32,7 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 # default editor
 # <C-x> + <C-e> to edit current command in $EDITOR
 # or `fc` to edit last command in $EDITOR
-export EDITOR=nvim
+export EDITOR=vim
 
-# Open Man page in nvim instead of less for readability and navigation
-export MANPAGER='nvim +Man!'
-
-# nvim theme, can be overrided by the one in .extra
-export NVIM_THEME=catppuccin-mocha
-
-# ibus vietnamese typing
-export GTK_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
-export QT_IM_MODULE=ibus
-
+# Open Man page in vim instead of less for readability and navigation
+export MANPAGER='vim -M +MANPAGER --not-a-term -'
