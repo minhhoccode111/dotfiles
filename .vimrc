@@ -54,8 +54,8 @@ set nostartofline
 " Show the cursor position
 set ruler
 
-" Show the current mode
-set showmode
+" " Show the current mode
+" set showmode
 
 " Show the filename in the window titlebar
 set title
@@ -87,15 +87,15 @@ noremap <leader>ss :call StripWhitespace()<CR>
 " Save a file as root (,W)
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
 
-" Automatic commands
-if has("autocmd")
-	" Enable file type detection
-	filetype on
-	" Treat .json files as .js
-	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
-	" Treat .md files as Markdown
-	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
-endif
+" " Automatic commands
+" if has("autocmd")
+" 	" Enable file type detection
+" 	filetype on
+" 	" Treat .json files as .js
+" 	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
+" 	" Treat .md files as Markdown
+" 	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
+" endif
 
 " Vim is based on Vi. Setting `nocompatible` switches from the default
 " Vi-compatibility mode and enables useful Vim functionality
@@ -226,9 +226,9 @@ nnoremap <C-k> <C-w><C-k>
 nnoremap <Leader>_ :sp<cr>
 nnoremap <Leader>\| :vsp<cr>
 
-" Save file with <C-s>
-inoremap <C-s> <cmd>w<cr>
-nnoremap <C-s> <cmd>w<cr>
+" " Save file with <C-s>
+" inoremap <C-s> <cmd>w<cr>
+" nnoremap <C-s> <cmd>w<cr>
 
 " Join line below but keep cursor position the same
 nnoremap J mzJ`z
@@ -262,8 +262,8 @@ nnoremap <Leader>tr :set rnu!<cr>
 " Toggle line wrap
 nnoremap <Leader>tw :set wrap!<cr>
 
-" Diagnostic navigation (if supported)
-nnoremap <Leader>k :lua vim.diagnostic.goto_prev()<cr>
-nnoremap <Leader>j :lua vim.diagnostic.goto_next()<cr>
-nnoremap <Leader>de :lua vim.diagnostic.open_float()<cr>
-nnoremap <Leader>dq :lua vim.diagnostic.setloclist()<cr>
+" " Diagnostic navigation (if supported)
+" nnoremap <Leader>k :lua vim.diagnostic.goto_prev()<cr>
+" nnoremap <Leader>j :lua vim.diagnostic.goto_next()<cr>
+" nnoremap <Leader>de :lua vim.diagnostic.open_float()<cr>
+" nnoremap <Leader>dq :lua vim.diagnostic.setloclist()<cr>

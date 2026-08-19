@@ -3,3 +3,7 @@ node_module/
 
 # IDEs generated files
 .idea/
+
+# .NET
+obj/
+bin/

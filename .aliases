@@ -15,72 +15,25 @@ alias 3="cd ../../.."
 alias 4="cd ../../../.."
 alias -- -="cd -"
 
-# Shortcuts
-alias cda="cd ~/app"
-alias cdc="cd ~/code"
-alias cdw="cd ~/work"
-alias cdl="cd ~/learn"
-alias cde="cd ~/exercism"
-alias cdf="cd ~/dotfiles"
-alias cdp="cd ~/projects"
-alias cdoc="cd ~/Documents"
-alias cdow="cd ~/Downloads"
-alias cdv="cd ~/.config/nvim"
-alias cdswap="cd ~/.local/state/nvim/swap/"
-
 # better default
 alias mkdir="mkdir -p"
 alias mv="mv -i"
 alias df="df -h"
-alias nv="nvim"
-alias v="nvim"
 alias t="tmux"
 alias z="lazygit"
 alias zz="lazydocker"
 alias y="yazi"
 alias bat="batcat" # bat on ubuntu is batcat
 alias fd=fdfind # fd on ubuntu is fdfind
-alias bundletool="~/app/bundletool.jar"
-# alias gcc="gcc -lcs50" # auto include CS50 library
 
-# basic
-alias so='source ~/dotfiles/bootstrap.sh -f'
+# others
+alias so='source ~/dotfiles/bootstrap.sh -f' # source dotfiles in this repo
 alias c="clear"
 alias l="ls -Ghal --color=auto"
 alias off="poweroff"
-# update system packages (or pacman -Syu)
-alias asd="sudo nala update && sudo nala upgrade -y && flatpak update && bun upgrade --stable"
-alias sni="sudo nala install -y"
-alias snr="sudo nala remove -y"
-alias snl="sudo nala list --upgradable"
-
-# Golang related
-# go test will output colors for PASS, FAIL and RUN
-alias gt="go test -v --bench . --benchmem | sed ''/PASS/s//$(printf "\033[32mPASS\033[0m")/'' | sed ''/FAIL/s//$(printf "\033[31mFAIL\033[0m")/'' | sed ''/RUN/s//$(printf "\033[33mRUN\033[0m")/''"
-
-# FVM, Flutter, and Dark related
-# activate FVM with:
-# dart pub global activate fvm
-alias d="fvm dart"
-alias f="fvm flutter"
-alias fr="f run"
-alias fdo="f doctor -v"
-alias ep="f emulator --launch phone"
-alias es="f emulator --launch small"
-alias em="f emulator --launch medium"
-alias el="f emulator --launch large"
-alias et="f emulator --launch tablet"
-# ~/shell/flutter_completion.bash
-complete -F __flutter_completion f
-
-# NOTE: git related
-alias log="git log --all --oneline --graph"
-alias gc="git commit -m"
-alias gs="git status"
-alias gf="git fetch --prune"
-alias ga="git add ."
 
 # git related
+alias log="git log --all --oneline --graph"
 get_git_branch() {
 	git branch 2>/dev/null | grep "^*" | colrm 1 2
 }
@@ -103,42 +56,6 @@ alias gplf='git pull origin $(get_git_branch) --rebase --force'
 alias g='git'
 source /usr/share/bash-completion/completions/git
 __git_complete g __git_main # auto completion for 'g'
-
-# npm related
-alias nsv="npm run server"
-alias nw="npm run watch"
-alias nb="npm run build"
-alias nt="npm run test"
-alias nd="npm run dev"
-alias ni="npm install"
-alias ns="npm start"
-
-# yarn related
-alias ysv="yarn run server"
-alias yw="yarn run watch"
-alias yb="yarn run build"
-alias yt="yarn run test"
-alias yd="yarn run dev"
-alias yi="yarn install"
-alias ys="yarn start"
-
-# bun related
-alias bsv="bun run server"
-alias bw="bun run watch"
-alias bb="bun run build"
-alias bt="bun run test"
-alias bd="bun run dev"
-alias bi="bun install"
-alias bs="bun start"
-
-# dotnet related
-alias dw="dotnet watch"
-alias db="dotnet build"
-alias dt="dotnet test"
-alias dr="dotnet run"
-alias dn="dotnet new"
-alias di="dotnet restore"
-alias deu="dotnet ef database update"
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
