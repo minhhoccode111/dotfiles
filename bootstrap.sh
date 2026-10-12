@@ -13,6 +13,9 @@ function doIt() {
 		--exclude "obsidian.vimrc" \
 		--exclude "ssh.conf" \
 		--exclude "README.md" \
+		--exclude "sync.sh" \
+		--exclude "bootstrap-vps.sh" \
+		--exclude "docs/" \
 		-avh --no-perms . ~ # ensure no permissions lost
 
 	# alacritty config file
